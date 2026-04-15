@@ -1,0 +1,501 @@
+claim_id,patient_name,hospital_name,procedure_name,claim_amount,fraud_risk_score,status,statusClass
+CLM00001,Amit Singh,KIMS Hyderabad,Angioplasty,135823,31,CLEAR ✅,green
+CLM00002,Suresh Yadav,Kokilaben Mumbai,Hip Replacement,217602,,CLEAR ✅,green
+CLM00003,Anita Gupta,KIMS Hyderabad,Bypass Surgery,2693862,55,REVIEW ⚠️,yellow
+CLM00004,Ravi Verma,Yashoda Hyderabad,Hip Replacement,132008,,CLEAR ✅,green
+CLM00005,Ravi Verma,Yashoda Hyderabad,Knee Replacement,151213,17,CLEAR ✅,green
+CLM00006,Priya Sharma,Yashoda Hyderabad,Cataract Surgery,17459,5,CLEAR ✅,green
+CLM00007,Suresh Yadav,Manipal Pune,Chemotherapy,172548,2,CLEAR ✅,green
+CLM00008,Deepak Nair,Manipal Pune,Cardiac Stenting,50611,2,CLEAR ✅,green
+CLM00009,Arun Tiwari,AIIMS Delhi,Gallbladder Removal,22109,,CLEAR ✅,green
+CLM00010,Sunita Devi,Amrita Kochi,Angioplasty,235719,30,CLEAR ✅,green
+CLM00011,Pooja Mishra,Ruby Hall Pune,Laparoscopy,257173,3,CLEAR ✅,green
+CLM00012,Sita Ram,Amrita Kochi,Angioplasty,122555,2,CLEAR ✅,green
+CLM00013,Suresh Yadav,PGIMER Chandigarh,Appendectomy,143903,1,CLEAR ✅,green
+CLM00014,Amit Singh,Amrita Kochi,Cataract Surgery,10802,3,CLEAR ✅,green
+CLM00015,Ravi Verma,Max Chennai,Gallbladder Removal,88731,6,CLEAR ✅,green
+CLM00016,Pooja Mishra,PGIMER Chandigarh,Appendectomy,102595,3,CLEAR ✅,green
+CLM00017,Sunita Devi,Ruby Hall Pune,Hernia Repair,1030077,52,REVIEW ⚠️,yellow
+CLM00018,Suresh Yadav,Fortis Bangalore,Laparoscopy,61727,3,CLEAR ✅,green
+CLM00019,Priya Sharma,CMC Vellore,Tonsillectomy,143205,3,CLEAR ✅,green
+CLM00020,Priya Sharma,Ruby Hall Pune,Liver Biopsy,89394,,CLEAR ✅,green
+CLM00021,Vikram Joshi,Max Chennai,Chemotherapy,167850,24,CLEAR ✅,green
+CLM00022,Vikram Joshi,Max Chennai,Bypass Surgery,162631,30,CLEAR ✅,green
+CLM00023,Arun Tiwari,AIIMS Delhi,Angioplasty,87266,6,CLEAR ✅,green
+CLM00024,Sunita Devi,Yashoda Hyderabad,Angioplasty,147122,3,CLEAR ✅,green
+CLM00025,Deepak Nair,Medanta Gurugram,Hernia Repair,113025,6,CLEAR ✅,green
+CLM00026,Deepak Nair,PGIMER Chandigarh,Laparoscopy,117512,6,CLEAR ✅,green
+CLM00027,Suresh Yadav,Apollo Mumbai,Cardiac Stenting,72630,2,CLEAR ✅,green
+CLM00028,Sita Ram,Max Chennai,Spinal Fusion,125786,3,CLEAR ✅,green
+CLM00029,Kavita Patel,Ruby Hall Pune,Cardiac Stenting,200369,2,CLEAR ✅,green
+CLM00030,Kavita Patel,KIMS Hyderabad,Tonsillectomy,128750,8,CLEAR ✅,green
+CLM00031,Priya Sharma,CMC Vellore,Bypass Surgery,68249,,CLEAR ✅,green
+CLM00032,Sita Ram,CMC Vellore,Hip Replacement,124456,2,CLEAR ✅,green
+CLM00033,Pooja Mishra,Narayana Kolkata,Appendectomy,155639,,CLEAR ✅,green
+CLM00034,Sunita Devi,Ruby Hall Pune,Appendectomy,29819,,CLEAR ✅,green
+CLM00035,Anita Gupta,KIMS Hyderabad,Laparoscopy,194021,,CLEAR ✅,green
+CLM00036,Ravi Verma,Yashoda Hyderabad,Liver Biopsy,20064,1,CLEAR ✅,green
+CLM00037,Deepak Nair,Amrita Kochi,Laparoscopy,66889,,CLEAR ✅,green
+CLM00038,Sunita Devi,Medanta Gurugram,Spinal Fusion,59732,2,CLEAR ✅,green
+CLM00039,Vikram Joshi,Yashoda Hyderabad,Hernia Repair,7430,22,CLEAR ✅,green
+CLM00040,Mohan Lal,Amrita Kochi,Gallbladder Removal,109341,1,CLEAR ✅,green
+CLM00041,Rajesh Kumar,AIIMS Delhi,Appendectomy,2147665,49,REVIEW ⚠️,yellow
+CLM00042,Amit Singh,Ruby Hall Pune,Hernia Repair,165976,,CLEAR ✅,green
+CLM00043,Mohan Lal,Max Chennai,Angioplasty,62375,2,CLEAR ✅,green
+CLM00044,Sunita Devi,Max Chennai,Gallbladder Removal,64710,1,CLEAR ✅,green
+CLM00045,Anita Gupta,KIMS Hyderabad,Knee Replacement,112865,,CLEAR ✅,green
+CLM00046,Amit Singh,Yashoda Hyderabad,Cataract Surgery,54337,1,CLEAR ✅,green
+CLM00047,Rajesh Kumar,Apollo Mumbai,Cataract Surgery,128001,,CLEAR ✅,green
+CLM00048,Anita Gupta,Fortis Bangalore,Spinal Fusion,124797,3,CLEAR ✅,green
+CLM00049,Rajesh Kumar,Yashoda Hyderabad,Appendectomy,102583,7,CLEAR ✅,green
+CLM00050,Sunita Devi,PGIMER Chandigarh,Liver Biopsy,166951,25,CLEAR ✅,green
+CLM00051,Vikram Joshi,PGIMER Chandigarh,Appendectomy,27229,,CLEAR ✅,green
+CLM00052,Sunita Devi,Max Chennai,Cataract Surgery,131122,,CLEAR ✅,green
+CLM00053,Vikram Joshi,CMC Vellore,Chemotherapy,109495,2,CLEAR ✅,green
+CLM00054,Deepak Nair,Lilavati Mumbai,Tonsillectomy,26628,,CLEAR ✅,green
+CLM00055,Sunita Devi,Ruby Hall Pune,Cataract Surgery,71876,2,CLEAR ✅,green
+CLM00056,Anita Gupta,KIMS Hyderabad,Appendectomy,41460,3,CLEAR ✅,green
+CLM00057,Deepak Nair,AIIMS Delhi,Hip Replacement,26372,4,CLEAR ✅,green
+CLM00058,Rajesh Kumar,Manipal Pune,Spinal Fusion,551452,38,CLEAR ✅,green
+CLM00059,Anita Gupta,PGIMER Chandigarh,Chemotherapy,184829,5,CLEAR ✅,green
+CLM00060,Deepak Nair,Apollo Mumbai,Hernia Repair,190709,24,CLEAR ✅,green
+CLM00061,Sunita Devi,Ruby Hall Pune,Spinal Fusion,248019,3,CLEAR ✅,green
+CLM00062,Meena Kumari,CMC Vellore,Cardiac Stenting,73773,4,CLEAR ✅,green
+CLM00063,Kavita Patel,Amrita Kochi,Appendectomy,200059,,CLEAR ✅,green
+CLM00064,Priya Sharma,Narayana Kolkata,Dialysis,207374,8,CLEAR ✅,green
+CLM00065,Deepak Nair,Fortis Bangalore,Knee Replacement,116024,7,CLEAR ✅,green
+CLM00066,Anita Gupta,Max Chennai,Gallbladder Removal,76644,25,CLEAR ✅,green
+CLM00067,Priya Sharma,Medanta Gurugram,Chemotherapy,239082,26,CLEAR ✅,green
+CLM00068,Sita Ram,CMC Vellore,Laparoscopy,1495413,52,REVIEW ⚠️,yellow
+CLM00069,Mohan Lal,KIMS Hyderabad,Liver Biopsy,8238,1,CLEAR ✅,green
+CLM00070,Anita Gupta,CMC Vellore,Gallbladder Removal,175128,,CLEAR ✅,green
+CLM00071,Ravi Verma,Narayana Kolkata,Chemotherapy,62089,3,CLEAR ✅,green
+CLM00072,Pooja Mishra,CMC Vellore,Dialysis,194762,,CLEAR ✅,green
+CLM00073,Vikram Joshi,Ruby Hall Pune,Angioplasty,1245873,34,CLEAR ✅,green
+CLM00074,Anita Gupta,Max Chennai,Appendectomy,220452,,CLEAR ✅,green
+CLM00075,Pooja Mishra,PGIMER Chandigarh,Hip Replacement,145555,,CLEAR ✅,green
+CLM00076,Pooja Mishra,Kokilaben Mumbai,Spinal Fusion,245468,33,CLEAR ✅,green
+CLM00077,Meena Kumari,PGIMER Chandigarh,Liver Biopsy,86554,,CLEAR ✅,green
+CLM00078,Sita Ram,Yashoda Hyderabad,Tonsillectomy,177734,28,CLEAR ✅,green
+CLM00079,Mohan Lal,Lilavati Mumbai,Gallbladder Removal,90303,,CLEAR ✅,green
+CLM00080,Deepak Nair,Medanta Gurugram,Chemotherapy,172349,,CLEAR ✅,green
+CLM00081,Suresh Yadav,Lilavati Mumbai,Liver Biopsy,61064,2,CLEAR ✅,green
+CLM00082,Priya Sharma,Fortis Bangalore,Angioplasty,125615,,CLEAR ✅,green
+CLM00083,Mohan Lal,Narayana Kolkata,Hernia Repair,173325,2,CLEAR ✅,green
+CLM00084,Suresh Yadav,Max Chennai,Bypass Surgery,260003,,CLEAR ✅,green
+CLM00085,Anita Gupta,Kokilaben Mumbai,Hernia Repair,219504,26,CLEAR ✅,green
+CLM00086,Amit Singh,Kokilaben Mumbai,Angioplasty,48980,,CLEAR ✅,green
+CLM00087,Arun Tiwari,AIIMS Delhi,Liver Biopsy,160277,35,CLEAR ✅,green
+CLM00088,Suresh Yadav,CMC Vellore,Bypass Surgery,103319,5,CLEAR ✅,green
+CLM00089,Meena Kumari,CMC Vellore,Bypass Surgery,1059250,57,REVIEW ⚠️,yellow
+CLM00090,Amit Singh,Lilavati Mumbai,Cardiac Stenting,191697,26,CLEAR ✅,green
+CLM00091,Pooja Mishra,Medanta Gurugram,Hip Replacement,161162,2,CLEAR ✅,green
+CLM00092,Vikram Joshi,Medanta Gurugram,Chemotherapy,184848,3,CLEAR ✅,green
+CLM00093,Sunita Devi,Ruby Hall Pune,Bypass Surgery,173594,3,CLEAR ✅,green
+CLM00094,Amit Singh,Yashoda Hyderabad,Hip Replacement,119343,,CLEAR ✅,green
+CLM00095,Kavita Patel,Yashoda Hyderabad,Bypass Surgery,79144,,CLEAR ✅,green
+CLM00096,Rajesh Kumar,Ruby Hall Pune,Knee Replacement,150223,2,CLEAR ✅,green
+CLM00097,Anita Gupta,PGIMER Chandigarh,Spinal Fusion,266145,5,CLEAR ✅,green
+CLM00098,Sunita Devi,Medanta Gurugram,Laparoscopy,11870,,CLEAR ✅,green
+CLM00099,Sita Ram,Ruby Hall Pune,Appendectomy,11465,1,CLEAR ✅,green
+CLM00100,Amit Singh,KIMS Hyderabad,Gallbladder Removal,36482,7,CLEAR ✅,green
+CLM00101,Deepak Nair,Yashoda Hyderabad,Spinal Fusion,336016,30,CLEAR ✅,green
+CLM00102,Deepak Nair,Kokilaben Mumbai,Angioplasty,38760,,CLEAR ✅,green
+CLM00103,Deepak Nair,Medanta Gurugram,Gallbladder Removal,49163,,CLEAR ✅,green
+CLM00104,Suresh Yadav,Lilavati Mumbai,Angioplasty,93709,3,CLEAR ✅,green
+CLM00105,Priya Sharma,Fortis Bangalore,Spinal Fusion,200990,25,CLEAR ✅,green
+CLM00106,Meena Kumari,Medanta Gurugram,Tonsillectomy,22218,2,CLEAR ✅,green
+CLM00107,Kavita Patel,Kokilaben Mumbai,Gallbladder Removal,186999,23,CLEAR ✅,green
+CLM00108,Vikram Joshi,CMC Vellore,Hernia Repair,188779,,CLEAR ✅,green
+CLM00109,Sita Ram,KIMS Hyderabad,Dialysis,106126,22,CLEAR ✅,green
+CLM00110,Suresh Yadav,AIIMS Delhi,Cardiac Stenting,48878,,CLEAR ✅,green
+CLM00111,Anita Gupta,PGIMER Chandigarh,Bypass Surgery,252408,31,CLEAR ✅,green
+CLM00112,Suresh Yadav,KIMS Hyderabad,Tonsillectomy,165340,,CLEAR ✅,green
+CLM00113,Deepak Nair,CMC Vellore,Spinal Fusion,156429,3,CLEAR ✅,green
+CLM00114,Anita Gupta,Ruby Hall Pune,Chemotherapy,159166,27,CLEAR ✅,green
+CLM00115,Anita Gupta,Narayana Kolkata,Hip Replacement,147061,,CLEAR ✅,green
+CLM00116,Meena Kumari,Lilavati Mumbai,Appendectomy,130147,36,CLEAR ✅,green
+CLM00117,Ravi Verma,Fortis Bangalore,Tonsillectomy,128111,,CLEAR ✅,green
+CLM00118,Sita Ram,Amrita Kochi,Gallbladder Removal,267353,27,CLEAR ✅,green
+CLM00119,Arun Tiwari,Yashoda Hyderabad,Tonsillectomy,125830,,CLEAR ✅,green
+CLM00120,Kavita Patel,Yashoda Hyderabad,Bypass Surgery,162437,,CLEAR ✅,green
+CLM00121,Anita Gupta,Apollo Mumbai,Angioplasty,8637,3,CLEAR ✅,green
+CLM00122,Meena Kumari,Yashoda Hyderabad,Bypass Surgery,182273,,CLEAR ✅,green
+CLM00123,Meena Kumari,Kokilaben Mumbai,Hernia Repair,66417,2,CLEAR ✅,green
+CLM00124,Kavita Patel,AIIMS Delhi,Cardiac Stenting,124193,24,CLEAR ✅,green
+CLM00125,Anita Gupta,Narayana Kolkata,Hip Replacement,141615,32,CLEAR ✅,green
+CLM00126,Amit Singh,Apollo Mumbai,Angioplasty,131236,,CLEAR ✅,green
+CLM00127,Meena Kumari,PGIMER Chandigarh,Spinal Fusion,54523,3,CLEAR ✅,green
+CLM00128,Anita Gupta,Kokilaben Mumbai,Chemotherapy,116821,6,CLEAR ✅,green
+CLM00129,Deepak Nair,CMC Vellore,Liver Biopsy,132164,,CLEAR ✅,green
+CLM00130,Meena Kumari,Yashoda Hyderabad,Cataract Surgery,161166,2,CLEAR ✅,green
+CLM00131,Sita Ram,CMC Vellore,Hip Replacement,25121,,CLEAR ✅,green
+CLM00132,Anita Gupta,Kokilaben Mumbai,Angioplasty,82585,7,CLEAR ✅,green
+CLM00133,Sunita Devi,Kokilaben Mumbai,Dialysis,112262,3,CLEAR ✅,green
+CLM00134,Pooja Mishra,Narayana Kolkata,Tonsillectomy,166904,7,CLEAR ✅,green
+CLM00135,Suresh Yadav,Amrita Kochi,Dialysis,83430,3,CLEAR ✅,green
+CLM00136,Sita Ram,Yashoda Hyderabad,Dialysis,149108,2,CLEAR ✅,green
+CLM00137,Deepak Nair,Fortis Bangalore,Cardiac Stenting,151171,32,CLEAR ✅,green
+CLM00138,Anita Gupta,Kokilaben Mumbai,Chemotherapy,291740,42,REVIEW ⚠️,yellow
+CLM00139,Mohan Lal,Max Chennai,Hernia Repair,195720,3,CLEAR ✅,green
+CLM00140,Pooja Mishra,Apollo Mumbai,Hernia Repair,211664,2,CLEAR ✅,green
+CLM00141,Arun Tiwari,PGIMER Chandigarh,Hernia Repair,139611,36,CLEAR ✅,green
+CLM00142,Vikram Joshi,Manipal Pune,Appendectomy,272531,,CLEAR ✅,green
+CLM00143,Meena Kumari,Ruby Hall Pune,Knee Replacement,41642,,CLEAR ✅,green
+CLM00144,Mohan Lal,Yashoda Hyderabad,Liver Biopsy,144705,,CLEAR ✅,green
+CLM00145,Suresh Yadav,Lilavati Mumbai,Liver Biopsy,81436,6,CLEAR ✅,green
+CLM00146,Suresh Yadav,Ruby Hall Pune,Spinal Fusion,183514,4,CLEAR ✅,green
+CLM00147,Arun Tiwari,KIMS Hyderabad,Dialysis,84585,3,CLEAR ✅,green
+CLM00148,Anita Gupta,Lilavati Mumbai,Bypass Surgery,80297,,CLEAR ✅,green
+CLM00149,Rajesh Kumar,Kokilaben Mumbai,Liver Biopsy,228975,18,CLEAR ✅,green
+CLM00150,Suresh Yadav,CMC Vellore,Tonsillectomy,67822,7,CLEAR ✅,green
+CLM00151,Priya Sharma,CMC Vellore,Cardiac Stenting,203990,27,CLEAR ✅,green
+CLM00152,Ravi Verma,Lilavati Mumbai,Tonsillectomy,60360,,CLEAR ✅,green
+CLM00153,Mohan Lal,Narayana Kolkata,Laparoscopy,110313,3,CLEAR ✅,green
+CLM00154,Amit Singh,Yashoda Hyderabad,Liver Biopsy,252681,35,CLEAR ✅,green
+CLM00155,Ravi Verma,KIMS Hyderabad,Hip Replacement,24904,,CLEAR ✅,green
+CLM00156,Arun Tiwari,Manipal Pune,Cataract Surgery,199731,25,CLEAR ✅,green
+CLM00157,Rajesh Kumar,Kokilaben Mumbai,Tonsillectomy,412836,34,CLEAR ✅,green
+CLM00158,Pooja Mishra,Yashoda Hyderabad,Knee Replacement,148038,7,CLEAR ✅,green
+CLM00159,Amit Singh,AIIMS Delhi,Liver Biopsy,188194,8,CLEAR ✅,green
+CLM00160,Mohan Lal,Narayana Kolkata,Cataract Surgery,19844,,CLEAR ✅,green
+CLM00161,Arun Tiwari,CMC Vellore,Appendectomy,188623,,CLEAR ✅,green
+CLM00162,Priya Sharma,AIIMS Delhi,Angioplasty,367960,26,CLEAR ✅,green
+CLM00163,Meena Kumari,KIMS Hyderabad,Bypass Surgery,150883,29,CLEAR ✅,green
+CLM00164,Meena Kumari,Ruby Hall Pune,Laparoscopy,184124,4,CLEAR ✅,green
+CLM00165,Deepak Nair,AIIMS Delhi,Appendectomy,106253,27,CLEAR ✅,green
+CLM00166,Mohan Lal,KIMS Hyderabad,Chemotherapy,835910,47,REVIEW ⚠️,yellow
+CLM00167,Anita Gupta,CMC Vellore,Gallbladder Removal,40564,,CLEAR ✅,green
+CLM00168,Anita Gupta,Ruby Hall Pune,Appendectomy,187824,2,CLEAR ✅,green
+CLM00169,Vikram Joshi,Medanta Gurugram,Cataract Surgery,54698,4,CLEAR ✅,green
+CLM00170,Amit Singh,Narayana Kolkata,Chemotherapy,43095,,CLEAR ✅,green
+CLM00171,Mohan Lal,Lilavati Mumbai,Dialysis,3187345,58,REVIEW ⚠️,yellow
+CLM00172,Ravi Verma,CMC Vellore,Laparoscopy,116973,2,CLEAR ✅,green
+CLM00173,Pooja Mishra,Yashoda Hyderabad,Bypass Surgery,343709,43,REVIEW ⚠️,yellow
+CLM00174,Sunita Devi,Manipal Pune,Spinal Fusion,47715,,CLEAR ✅,green
+CLM00175,Mohan Lal,Medanta Gurugram,Laparoscopy,1709571,48,REVIEW ⚠️,yellow
+CLM00176,Meena Kumari,Max Chennai,Laparoscopy,200820,22,CLEAR ✅,green
+CLM00177,Vikram Joshi,Lilavati Mumbai,Dialysis,146195,27,CLEAR ✅,green
+CLM00178,Sunita Devi,KIMS Hyderabad,Bypass Surgery,127786,,CLEAR ✅,green
+CLM00179,Sita Ram,Ruby Hall Pune,Appendectomy,288821,,CLEAR ✅,green
+CLM00180,Pooja Mishra,Ruby Hall Pune,Gallbladder Removal,127967,7,CLEAR ✅,green
+CLM00181,Sunita Devi,Ruby Hall Pune,Angioplasty,45361,,CLEAR ✅,green
+CLM00182,Amit Singh,Lilavati Mumbai,Gallbladder Removal,155176,3,CLEAR ✅,green
+CLM00183,Sunita Devi,Medanta Gurugram,Hernia Repair,102774,4,CLEAR ✅,green
+CLM00184,Pooja Mishra,Fortis Bangalore,Cardiac Stenting,134997,3,CLEAR ✅,green
+CLM00185,Mohan Lal,Lilavati Mumbai,Cardiac Stenting,394842,27,CLEAR ✅,green
+CLM00186,Sunita Devi,Manipal Pune,Tonsillectomy,211005,3,CLEAR ✅,green
+CLM00187,Vikram Joshi,AIIMS Delhi,Hernia Repair,253843,23,CLEAR ✅,green
+CLM00188,Mohan Lal,Kokilaben Mumbai,Bypass Surgery,119653,1,CLEAR ✅,green
+CLM00189,Pooja Mishra,Yashoda Hyderabad,Appendectomy,84899,28,CLEAR ✅,green
+CLM00190,Amit Singh,Yashoda Hyderabad,Tonsillectomy,317404,24,CLEAR ✅,green
+CLM00191,Deepak Nair,Ruby Hall Pune,Hernia Repair,151291,3,CLEAR ✅,green
+CLM00192,Sunita Devi,PGIMER Chandigarh,Liver Biopsy,247099,2,CLEAR ✅,green
+CLM00193,Sunita Devi,Max Chennai,Laparoscopy,123009,,CLEAR ✅,green
+CLM00194,Meena Kumari,Manipal Pune,Laparoscopy,103517,,CLEAR ✅,green
+CLM00195,Kavita Patel,Max Chennai,Cataract Surgery,104379,34,CLEAR ✅,green
+CLM00196,Anita Gupta,Apollo Mumbai,Gallbladder Removal,174490,8,CLEAR ✅,green
+CLM00197,Sita Ram,CMC Vellore,Appendectomy,143535,2,CLEAR ✅,green
+CLM00198,Arun Tiwari,CMC Vellore,Spinal Fusion,150973,4,CLEAR ✅,green
+CLM00199,Kavita Patel,Kokilaben Mumbai,Tonsillectomy,74887,6,CLEAR ✅,green
+CLM00200,Arun Tiwari,PGIMER Chandigarh,Cardiac Stenting,104748,17,CLEAR ✅,green
+CLM00201,Arun Tiwari,AIIMS Delhi,Bypass Surgery,1143609,36,CLEAR ✅,green
+CLM00202,Sunita Devi,PGIMER Chandigarh,Cataract Surgery,117425,25,CLEAR ✅,green
+CLM00203,Arun Tiwari,KIMS Hyderabad,Hip Replacement,32275,2,CLEAR ✅,green
+CLM00204,Pooja Mishra,Fortis Bangalore,Bypass Surgery,172157,3,CLEAR ✅,green
+CLM00205,Ravi Verma,Amrita Kochi,Spinal Fusion,274083,26,CLEAR ✅,green
+CLM00206,Suresh Yadav,CMC Vellore,Appendectomy,122757,7,CLEAR ✅,green
+CLM00207,Deepak Nair,Yashoda Hyderabad,Spinal Fusion,79740,,CLEAR ✅,green
+CLM00208,Vikram Joshi,Fortis Bangalore,Appendectomy,115075,1,CLEAR ✅,green
+CLM00209,Priya Sharma,Kokilaben Mumbai,Appendectomy,1471486,33,CLEAR ✅,green
+CLM00210,Anita Gupta,Narayana Kolkata,Angioplasty,117279,,CLEAR ✅,green
+CLM00211,Vikram Joshi,CMC Vellore,Hernia Repair,103589,8,CLEAR ✅,green
+CLM00212,Suresh Yadav,KIMS Hyderabad,Angioplasty,150389,,CLEAR ✅,green
+CLM00213,Arun Tiwari,Narayana Kolkata,Hernia Repair,216498,27,CLEAR ✅,green
+CLM00214,Meena Kumari,Medanta Gurugram,Knee Replacement,74097,,CLEAR ✅,green
+CLM00215,Arun Tiwari,KIMS Hyderabad,Hip Replacement,183019,,CLEAR ✅,green
+CLM00216,Sunita Devi,Manipal Pune,Bypass Surgery,154010,,CLEAR ✅,green
+CLM00217,Arun Tiwari,Apollo Mumbai,Gallbladder Removal,142481,2,CLEAR ✅,green
+CLM00218,Pooja Mishra,Max Chennai,Chemotherapy,218366,,CLEAR ✅,green
+CLM00219,Arun Tiwari,Max Chennai,Dialysis,69841,,CLEAR ✅,green
+CLM00220,Anita Gupta,PGIMER Chandigarh,Tonsillectomy,140719,,CLEAR ✅,green
+CLM00221,Amit Singh,Yashoda Hyderabad,Cardiac Stenting,100415,5,CLEAR ✅,green
+CLM00222,Deepak Nair,Yashoda Hyderabad,Dialysis,226775,2,CLEAR ✅,green
+CLM00223,Arun Tiwari,Fortis Bangalore,Knee Replacement,11331,,CLEAR ✅,green
+CLM00224,Pooja Mishra,Amrita Kochi,Chemotherapy,231984,29,CLEAR ✅,green
+CLM00225,Meena Kumari,Medanta Gurugram,Knee Replacement,177132,3,CLEAR ✅,green
+CLM00226,Deepak Nair,Narayana Kolkata,Hernia Repair,1319092,37,CLEAR ✅,green
+CLM00227,Rajesh Kumar,Narayana Kolkata,Hip Replacement,122094,,CLEAR ✅,green
+CLM00228,Arun Tiwari,AIIMS Delhi,Cardiac Stenting,128370,3,CLEAR ✅,green
+CLM00229,Mohan Lal,PGIMER Chandigarh,Gallbladder Removal,147794,,CLEAR ✅,green
+CLM00230,Vikram Joshi,Ruby Hall Pune,Hernia Repair,836703,37,CLEAR ✅,green
+CLM00231,Suresh Yadav,AIIMS Delhi,Appendectomy,1245315,53,REVIEW ⚠️,yellow
+CLM00232,Mohan Lal,Kokilaben Mumbai,Gallbladder Removal,285633,8,CLEAR ✅,green
+CLM00233,Deepak Nair,Fortis Bangalore,Hip Replacement,102545,,CLEAR ✅,green
+CLM00234,Sunita Devi,PGIMER Chandigarh,Tonsillectomy,134513,,CLEAR ✅,green
+CLM00235,Priya Sharma,Amrita Kochi,Spinal Fusion,61732,,CLEAR ✅,green
+CLM00236,Arun Tiwari,Yashoda Hyderabad,Hernia Repair,1073807,47,REVIEW ⚠️,yellow
+CLM00237,Sita Ram,Yashoda Hyderabad,Liver Biopsy,115029,22,CLEAR ✅,green
+CLM00238,Ravi Verma,AIIMS Delhi,Cardiac Stenting,123482,28,CLEAR ✅,green
+CLM00239,Anita Gupta,Narayana Kolkata,Appendectomy,114828,28,CLEAR ✅,green
+CLM00240,Arun Tiwari,PGIMER Chandigarh,Dialysis,80905,24,CLEAR ✅,green
+CLM00241,Vikram Joshi,Fortis Bangalore,Cardiac Stenting,476974,33,CLEAR ✅,green
+CLM00242,Anita Gupta,Kokilaben Mumbai,Liver Biopsy,148209,7,CLEAR ✅,green
+CLM00243,Ravi Verma,Yashoda Hyderabad,Laparoscopy,169049,3,CLEAR ✅,green
+CLM00244,Suresh Yadav,Narayana Kolkata,Tonsillectomy,168973,,CLEAR ✅,green
+CLM00245,Priya Sharma,AIIMS Delhi,Angioplasty,55289,25,CLEAR ✅,green
+CLM00246,Vikram Joshi,AIIMS Delhi,Appendectomy,111822,2,CLEAR ✅,green
+CLM00247,Sunita Devi,Fortis Bangalore,Bypass Surgery,57333,8,CLEAR ✅,green
+CLM00248,Sunita Devi,Kokilaben Mumbai,Gallbladder Removal,173157,,CLEAR ✅,green
+CLM00249,Arun Tiwari,Lilavati Mumbai,Liver Biopsy,33398,3,CLEAR ✅,green
+CLM00250,Vikram Joshi,Ruby Hall Pune,Cardiac Stenting,93768,,CLEAR ✅,green
+CLM00251,Vikram Joshi,Kokilaben Mumbai,Appendectomy,69476,2,CLEAR ✅,green
+CLM00252,Sunita Devi,Fortis Bangalore,Chemotherapy,17010,3,CLEAR ✅,green
+CLM00253,Mohan Lal,Yashoda Hyderabad,Appendectomy,82151,,CLEAR ✅,green
+CLM00254,Meena Kumari,Lilavati Mumbai,Liver Biopsy,49512,3,CLEAR ✅,green
+CLM00255,Vikram Joshi,Apollo Mumbai,Knee Replacement,229292,33,CLEAR ✅,green
+CLM00256,Rajesh Kumar,AIIMS Delhi,Spinal Fusion,385304,33,CLEAR ✅,green
+CLM00257,Priya Sharma,KIMS Hyderabad,Liver Biopsy,83394,,CLEAR ✅,green
+CLM00258,Meena Kumari,PGIMER Chandigarh,Cardiac Stenting,28361,7,CLEAR ✅,green
+CLM00259,Vikram Joshi,Narayana Kolkata,Cataract Surgery,22984,33,CLEAR ✅,green
+CLM00260,Vikram Joshi,Narayana Kolkata,Tonsillectomy,32281,2,CLEAR ✅,green
+CLM00261,Deepak Nair,KIMS Hyderabad,Tonsillectomy,115977,8,CLEAR ✅,green
+CLM00262,Kavita Patel,Fortis Bangalore,Bypass Surgery,123614,3,CLEAR ✅,green
+CLM00263,Rajesh Kumar,CMC Vellore,Appendectomy,200520,1,CLEAR ✅,green
+CLM00264,Priya Sharma,Lilavati Mumbai,Appendectomy,79820,3,CLEAR ✅,green
+CLM00265,Kavita Patel,Max Chennai,Laparoscopy,68433,8,CLEAR ✅,green
+CLM00266,Vikram Joshi,Yashoda Hyderabad,Knee Replacement,25604,3,CLEAR ✅,green
+CLM00267,Sita Ram,Kokilaben Mumbai,Gallbladder Removal,179358,,CLEAR ✅,green
+CLM00268,Meena Kumari,Kokilaben Mumbai,Bypass Surgery,166599,,CLEAR ✅,green
+CLM00269,Deepak Nair,Apollo Mumbai,Angioplasty,55040,,CLEAR ✅,green
+CLM00270,Ravi Verma,Yashoda Hyderabad,Laparoscopy,161838,25,CLEAR ✅,green
+CLM00271,Amit Singh,PGIMER Chandigarh,Appendectomy,356539,30,CLEAR ✅,green
+CLM00272,Mohan Lal,Manipal Pune,Bypass Surgery,10545,,CLEAR ✅,green
+CLM00273,Rajesh Kumar,Ruby Hall Pune,Cardiac Stenting,99488,32,CLEAR ✅,green
+CLM00274,Amit Singh,Lilavati Mumbai,Spinal Fusion,36600,2,CLEAR ✅,green
+CLM00275,Meena Kumari,Yashoda Hyderabad,Hernia Repair,1075830,43,REVIEW ⚠️,yellow
+CLM00276,Sita Ram,Narayana Kolkata,Gallbladder Removal,256367,22,CLEAR ✅,green
+CLM00277,Arun Tiwari,AIIMS Delhi,Gallbladder Removal,110082,3,CLEAR ✅,green
+CLM00278,Rajesh Kumar,Medanta Gurugram,Gallbladder Removal,49143,3,CLEAR ✅,green
+CLM00279,Ravi Verma,AIIMS Delhi,Cardiac Stenting,256502,24,CLEAR ✅,green
+CLM00280,Deepak Nair,Apollo Mumbai,Laparoscopy,49851,,CLEAR ✅,green
+CLM00281,Amit Singh,Apollo Mumbai,Appendectomy,188200,3,CLEAR ✅,green
+CLM00282,Mohan Lal,Lilavati Mumbai,Knee Replacement,230958,1,CLEAR ✅,green
+CLM00283,Sita Ram,AIIMS Delhi,Spinal Fusion,284231,5,CLEAR ✅,green
+CLM00284,Arun Tiwari,PGIMER Chandigarh,Knee Replacement,12988,,CLEAR ✅,green
+CLM00285,Pooja Mishra,CMC Vellore,Hip Replacement,201897,2,CLEAR ✅,green
+CLM00286,Priya Sharma,PGIMER Chandigarh,Knee Replacement,110758,,CLEAR ✅,green
+CLM00287,Anita Gupta,AIIMS Delhi,Bypass Surgery,239529,2,CLEAR ✅,green
+CLM00288,Anita Gupta,Amrita Kochi,Angioplasty,121792,3,CLEAR ✅,green
+CLM00289,Sita Ram,Amrita Kochi,Appendectomy,275179,1,CLEAR ✅,green
+CLM00290,Meena Kumari,Fortis Bangalore,Tonsillectomy,1118478,35,CLEAR ✅,green
+CLM00291,Rajesh Kumar,Fortis Bangalore,Dialysis,197398,4,CLEAR ✅,green
+CLM00292,Mohan Lal,Narayana Kolkata,Cataract Surgery,138195,2,CLEAR ✅,green
+CLM00293,Kavita Patel,Narayana Kolkata,Bypass Surgery,194457,,CLEAR ✅,green
+CLM00294,Amit Singh,Yashoda Hyderabad,Liver Biopsy,130109,1,CLEAR ✅,green
+CLM00295,Sita Ram,Fortis Bangalore,Appendectomy,16749,1,CLEAR ✅,green
+CLM00296,Sunita Devi,PGIMER Chandigarh,Liver Biopsy,1637729,58,REVIEW ⚠️,yellow
+CLM00297,Meena Kumari,Lilavati Mumbai,Liver Biopsy,78028,3,CLEAR ✅,green
+CLM00298,Rajesh Kumar,Ruby Hall Pune,Laparoscopy,83083,33,CLEAR ✅,green
+CLM00299,Rajesh Kumar,Ruby Hall Pune,Bypass Surgery,239034,33,CLEAR ✅,green
+CLM00300,Anita Gupta,Narayana Kolkata,Spinal Fusion,863616,55,REVIEW ⚠️,yellow
+CLM00301,Pooja Mishra,KIMS Hyderabad,Tonsillectomy,162924,,CLEAR ✅,green
+CLM00302,Ravi Verma,Manipal Pune,Spinal Fusion,26424,28,CLEAR ✅,green
+CLM00303,Suresh Yadav,KIMS Hyderabad,Spinal Fusion,243184,3,CLEAR ✅,green
+CLM00304,Sita Ram,Lilavati Mumbai,Dialysis,150902,8,CLEAR ✅,green
+CLM00305,Suresh Yadav,Apollo Mumbai,Liver Biopsy,101828,25,CLEAR ✅,green
+CLM00306,Sita Ram,Amrita Kochi,Hernia Repair,139310,30,CLEAR ✅,green
+CLM00307,Pooja Mishra,Narayana Kolkata,Laparoscopy,187790,3,CLEAR ✅,green
+CLM00308,Anita Gupta,Max Chennai,Hip Replacement,256946,6,CLEAR ✅,green
+CLM00309,Sita Ram,Amrita Kochi,Liver Biopsy,213518,8,CLEAR ✅,green
+CLM00310,Meena Kumari,Narayana Kolkata,Laparoscopy,1684091,53,REVIEW ⚠️,yellow
+CLM00311,Deepak Nair,Kokilaben Mumbai,Gallbladder Removal,19801,,CLEAR ✅,green
+CLM00312,Sita Ram,Apollo Mumbai,Cataract Surgery,38567,1,CLEAR ✅,green
+CLM00313,Deepak Nair,CMC Vellore,Liver Biopsy,40609,2,CLEAR ✅,green
+CLM00314,Amit Singh,AIIMS Delhi,Appendectomy,170708,1,CLEAR ✅,green
+CLM00315,Arun Tiwari,Lilavati Mumbai,Dialysis,166757,2,CLEAR ✅,green
+CLM00316,Rajesh Kumar,CMC Vellore,Tonsillectomy,37256,,CLEAR ✅,green
+CLM00317,Sunita Devi,AIIMS Delhi,Angioplasty,144889,6,CLEAR ✅,green
+CLM00318,Anita Gupta,PGIMER Chandigarh,Liver Biopsy,276930,24,CLEAR ✅,green
+CLM00319,Meena Kumari,Narayana Kolkata,Chemotherapy,194817,1,CLEAR ✅,green
+CLM00320,Sunita Devi,Fortis Bangalore,Cataract Surgery,22407,,CLEAR ✅,green
+CLM00321,Rajesh Kumar,Lilavati Mumbai,Appendectomy,177734,7,CLEAR ✅,green
+CLM00322,Sunita Devi,Kokilaben Mumbai,Angioplasty,259164,3,CLEAR ✅,green
+CLM00323,Sita Ram,AIIMS Delhi,Appendectomy,172449,,CLEAR ✅,green
+CLM00324,Amit Singh,PGIMER Chandigarh,Dialysis,110408,2,CLEAR ✅,green
+CLM00325,Sunita Devi,AIIMS Delhi,Hernia Repair,110876,18,CLEAR ✅,green
+CLM00326,Amit Singh,Max Chennai,Appendectomy,92958,2,CLEAR ✅,green
+CLM00327,Priya Sharma,Lilavati Mumbai,Spinal Fusion,272063,6,CLEAR ✅,green
+CLM00328,Amit Singh,Amrita Kochi,Appendectomy,112951,2,CLEAR ✅,green
+CLM00329,Deepak Nair,Manipal Pune,Chemotherapy,87397,17,CLEAR ✅,green
+CLM00330,Suresh Yadav,PGIMER Chandigarh,Hip Replacement,34234,1,CLEAR ✅,green
+CLM00331,Pooja Mishra,Manipal Pune,Dialysis,13686,,CLEAR ✅,green
+CLM00332,Amit Singh,Ruby Hall Pune,Liver Biopsy,6779,,CLEAR ✅,green
+CLM00333,Arun Tiwari,Narayana Kolkata,Liver Biopsy,118876,6,CLEAR ✅,green
+CLM00334,Sunita Devi,Apollo Mumbai,Hip Replacement,108429,22,CLEAR ✅,green
+CLM00335,Sunita Devi,Max Chennai,Hip Replacement,19074,8,CLEAR ✅,green
+CLM00336,Ravi Verma,Kokilaben Mumbai,Angioplasty,68301,3,CLEAR ✅,green
+CLM00337,Vikram Joshi,Medanta Gurugram,Dialysis,190714,1,CLEAR ✅,green
+CLM00338,Priya Sharma,Lilavati Mumbai,Cardiac Stenting,100127,,CLEAR ✅,green
+CLM00339,Amit Singh,CMC Vellore,Appendectomy,269061,,CLEAR ✅,green
+CLM00340,Priya Sharma,Fortis Bangalore,Hernia Repair,151136,1,CLEAR ✅,green
+CLM00341,Ravi Verma,Max Chennai,Chemotherapy,262765,8,CLEAR ✅,green
+CLM00342,Priya Sharma,CMC Vellore,Dialysis,186014,,CLEAR ✅,green
+CLM00343,Mohan Lal,Ruby Hall Pune,Liver Biopsy,54490,,CLEAR ✅,green
+CLM00344,Pooja Mishra,Yashoda Hyderabad,Spinal Fusion,159898,23,CLEAR ✅,green
+CLM00345,Kavita Patel,Kokilaben Mumbai,Cataract Surgery,122159,,CLEAR ✅,green
+CLM00346,Vikram Joshi,PGIMER Chandigarh,Chemotherapy,95183,2,CLEAR ✅,green
+CLM00347,Sunita Devi,Medanta Gurugram,Spinal Fusion,62973,2,CLEAR ✅,green
+CLM00348,Amit Singh,AIIMS Delhi,Appendectomy,177323,,CLEAR ✅,green
+CLM00349,Rajesh Kumar,Narayana Kolkata,Laparoscopy,166196,6,CLEAR ✅,green
+CLM00350,Deepak Nair,Narayana Kolkata,Liver Biopsy,139554,8,CLEAR ✅,green
+CLM00351,Deepak Nair,Ruby Hall Pune,Hip Replacement,22703,3,CLEAR ✅,green
+CLM00352,Arun Tiwari,Amrita Kochi,Gallbladder Removal,174526,,CLEAR ✅,green
+CLM00353,Anita Gupta,Kokilaben Mumbai,Chemotherapy,231804,21,CLEAR ✅,green
+CLM00354,Meena Kumari,Ruby Hall Pune,Knee Replacement,188910,3,CLEAR ✅,green
+CLM00355,Arun Tiwari,Narayana Kolkata,Liver Biopsy,138477,6,CLEAR ✅,green
+CLM00356,Mohan Lal,Ruby Hall Pune,Angioplasty,32987,,CLEAR ✅,green
+CLM00357,Suresh Yadav,Apollo Mumbai,Cardiac Stenting,156141,2,CLEAR ✅,green
+CLM00358,Deepak Nair,Kokilaben Mumbai,Gallbladder Removal,13228,,CLEAR ✅,green
+CLM00359,Sita Ram,Lilavati Mumbai,Cardiac Stenting,57938,20,CLEAR ✅,green
+CLM00360,Priya Sharma,Amrita Kochi,Spinal Fusion,62454,5,CLEAR ✅,green
+CLM00361,Meena Kumari,Ruby Hall Pune,Appendectomy,208346,3,CLEAR ✅,green
+CLM00362,Sita Ram,Lilavati Mumbai,Dialysis,80772,8,CLEAR ✅,green
+CLM00363,Ravi Verma,PGIMER Chandigarh,Appendectomy,67590,8,CLEAR ✅,green
+CLM00364,Rajesh Kumar,Narayana Kolkata,Knee Replacement,173146,1,CLEAR ✅,green
+CLM00365,Ravi Verma,Amrita Kochi,Angioplasty,26123,28,CLEAR ✅,green
+CLM00366,Suresh Yadav,Max Chennai,Appendectomy,30664,6,CLEAR ✅,green
+CLM00367,Ravi Verma,Yashoda Hyderabad,Tonsillectomy,212919,1,CLEAR ✅,green
+CLM00368,Rajesh Kumar,Yashoda Hyderabad,Dialysis,139682,,CLEAR ✅,green
+CLM00369,Anita Gupta,Fortis Bangalore,Dialysis,84252,,CLEAR ✅,green
+CLM00370,Ravi Verma,Max Chennai,Appendectomy,133588,,CLEAR ✅,green
+CLM00371,Rajesh Kumar,Max Chennai,Hip Replacement,200079,1,CLEAR ✅,green
+CLM00372,Amit Singh,Manipal Pune,Dialysis,250422,2,CLEAR ✅,green
+CLM00373,Suresh Yadav,Manipal Pune,Cataract Surgery,72248,,CLEAR ✅,green
+CLM00374,Ravi Verma,Yashoda Hyderabad,Bypass Surgery,26991,3,CLEAR ✅,green
+CLM00375,Sita Ram,Ruby Hall Pune,Hip Replacement,92824,4,CLEAR ✅,green
+CLM00376,Amit Singh,PGIMER Chandigarh,Chemotherapy,36494,,CLEAR ✅,green
+CLM00377,Meena Kumari,Lilavati Mumbai,Knee Replacement,334209,17,CLEAR ✅,green
+CLM00378,Sunita Devi,CMC Vellore,Dialysis,241147,22,CLEAR ✅,green
+CLM00379,Rajesh Kumar,Narayana Kolkata,Angioplasty,209516,27,CLEAR ✅,green
+CLM00380,Kavita Patel,Medanta Gurugram,Hip Replacement,135894,7,CLEAR ✅,green
+CLM00381,Suresh Yadav,CMC Vellore,Cataract Surgery,14318,,CLEAR ✅,green
+CLM00382,Sunita Devi,Manipal Pune,Hernia Repair,33587,1,CLEAR ✅,green
+CLM00383,Amit Singh,KIMS Hyderabad,Liver Biopsy,161115,6,CLEAR ✅,green
+CLM00384,Meena Kumari,PGIMER Chandigarh,Cardiac Stenting,14503,2,CLEAR ✅,green
+CLM00385,Ravi Verma,Max Chennai,Knee Replacement,104390,,CLEAR ✅,green
+CLM00386,Pooja Mishra,Amrita Kochi,Gallbladder Removal,272054,3,CLEAR ✅,green
+CLM00387,Kavita Patel,Narayana Kolkata,Spinal Fusion,32964,1,CLEAR ✅,green
+CLM00388,Rajesh Kumar,CMC Vellore,Hip Replacement,203495,2,CLEAR ✅,green
+CLM00389,Sita Ram,Ruby Hall Pune,Laparoscopy,91125,,CLEAR ✅,green
+CLM00390,Suresh Yadav,Apollo Mumbai,Hernia Repair,170858,3,CLEAR ✅,green
+CLM00391,Amit Singh,PGIMER Chandigarh,Spinal Fusion,220756,30,CLEAR ✅,green
+CLM00392,Arun Tiwari,Amrita Kochi,Appendectomy,74522,1,CLEAR ✅,green
+CLM00393,Priya Sharma,Fortis Bangalore,Angioplasty,248307,27,CLEAR ✅,green
+CLM00394,Amit Singh,Amrita Kochi,Knee Replacement,186635,,CLEAR ✅,green
+CLM00395,Sunita Devi,Apollo Mumbai,Gallbladder Removal,63130,,CLEAR ✅,green
+CLM00396,Amit Singh,KIMS Hyderabad,Laparoscopy,71628,,CLEAR ✅,green
+CLM00397,Anita Gupta,CMC Vellore,Angioplasty,154929,,CLEAR ✅,green
+CLM00398,Priya Sharma,Fortis Bangalore,Dialysis,70866,1,CLEAR ✅,green
+CLM00399,Priya Sharma,AIIMS Delhi,Appendectomy,149487,18,CLEAR ✅,green
+CLM00400,Priya Sharma,Amrita Kochi,Spinal Fusion,185416,,CLEAR ✅,green
+CLM00401,Meena Kumari,Max Chennai,Gallbladder Removal,78341,3,CLEAR ✅,green
+CLM00402,Rajesh Kumar,Yashoda Hyderabad,Laparoscopy,884786,38,CLEAR ✅,green
+CLM00403,Ravi Verma,Amrita Kochi,Gallbladder Removal,106963,,CLEAR ✅,green
+CLM00404,Mohan Lal,PGIMER Chandigarh,Chemotherapy,174471,7,CLEAR ✅,green
+CLM00405,Ravi Verma,Ruby Hall Pune,Chemotherapy,13088,3,CLEAR ✅,green
+CLM00406,Meena Kumari,Medanta Gurugram,Tonsillectomy,62616,6,CLEAR ✅,green
+CLM00407,Sita Ram,Manipal Pune,Cardiac Stenting,5778,2,CLEAR ✅,green
+CLM00408,Pooja Mishra,Ruby Hall Pune,Dialysis,165041,4,CLEAR ✅,green
+CLM00409,Deepak Nair,PGIMER Chandigarh,Appendectomy,219490,23,CLEAR ✅,green
+CLM00410,Sunita Devi,Max Chennai,Hip Replacement,76148,4,CLEAR ✅,green
+CLM00411,Priya Sharma,KIMS Hyderabad,Cardiac Stenting,106374,3,CLEAR ✅,green
+CLM00412,Anita Gupta,Fortis Bangalore,Cataract Surgery,14086,,CLEAR ✅,green
+CLM00413,Suresh Yadav,Ruby Hall Pune,Angioplasty,102429,,CLEAR ✅,green
+CLM00414,Mohan Lal,Amrita Kochi,Appendectomy,130629,,CLEAR ✅,green
+CLM00415,Deepak Nair,KIMS Hyderabad,Dialysis,143454,2,CLEAR ✅,green
+CLM00416,Amit Singh,Kokilaben Mumbai,Bypass Surgery,20152,33,CLEAR ✅,green
+CLM00417,Priya Sharma,Fortis Bangalore,Cardiac Stenting,27072,1,CLEAR ✅,green
+CLM00418,Sunita Devi,Yashoda Hyderabad,Gallbladder Removal,29564,3,CLEAR ✅,green
+CLM00419,Amit Singh,AIIMS Delhi,Liver Biopsy,127156,2,CLEAR ✅,green
+CLM00420,Kavita Patel,Fortis Bangalore,Angioplasty,173893,6,CLEAR ✅,green
+CLM00421,Amit Singh,CMC Vellore,Gallbladder Removal,65802,4,CLEAR ✅,green
+CLM00422,Suresh Yadav,CMC Vellore,Gallbladder Removal,79053,3,CLEAR ✅,green
+CLM00423,Arun Tiwari,Apollo Mumbai,Liver Biopsy,115049,,CLEAR ✅,green
+CLM00424,Vikram Joshi,CMC Vellore,Bypass Surgery,77420,,CLEAR ✅,green
+CLM00425,Pooja Mishra,Fortis Bangalore,Chemotherapy,55559,17,CLEAR ✅,green
+CLM00426,Vikram Joshi,KIMS Hyderabad,Tonsillectomy,857390,50,REVIEW ⚠️,yellow
+CLM00427,Mohan Lal,Kokilaben Mumbai,Chemotherapy,95456,,CLEAR ✅,green
+CLM00428,Kavita Patel,Medanta Gurugram,Gallbladder Removal,55972,27,CLEAR ✅,green
+CLM00429,Sunita Devi,Yashoda Hyderabad,Dialysis,19541,,CLEAR ✅,green
+CLM00430,Arun Tiwari,AIIMS Delhi,Hernia Repair,158882,4,CLEAR ✅,green
+CLM00431,Vikram Joshi,Lilavati Mumbai,Tonsillectomy,74966,6,CLEAR ✅,green
+CLM00432,Rajesh Kumar,AIIMS Delhi,Knee Replacement,286449,29,CLEAR ✅,green
+CLM00433,Mohan Lal,Amrita Kochi,Cardiac Stenting,126166,7,CLEAR ✅,green
+CLM00434,Pooja Mishra,CMC Vellore,Bypass Surgery,47186,3,CLEAR ✅,green
+CLM00435,Suresh Yadav,Medanta Gurugram,Hernia Repair,159813,1,CLEAR ✅,green
+CLM00436,Sita Ram,Narayana Kolkata,Liver Biopsy,7021,,CLEAR ✅,green
+CLM00437,Kavita Patel,KIMS Hyderabad,Cataract Surgery,23766,,CLEAR ✅,green
+CLM00438,Anita Gupta,Apollo Mumbai,Angioplasty,237234,1,CLEAR ✅,green
+CLM00439,Anita Gupta,Fortis Bangalore,Liver Biopsy,694193,36,CLEAR ✅,green
+CLM00440,Arun Tiwari,PGIMER Chandigarh,Angioplasty,9956,,CLEAR ✅,green
+CLM00441,Vikram Joshi,Medanta Gurugram,Cardiac Stenting,97284,2,CLEAR ✅,green
+CLM00442,Meena Kumari,Amrita Kochi,Spinal Fusion,101650,,CLEAR ✅,green
+CLM00443,Suresh Yadav,Lilavati Mumbai,Liver Biopsy,126188,2,CLEAR ✅,green
+CLM00444,Ravi Verma,PGIMER Chandigarh,Cardiac Stenting,109713,3,CLEAR ✅,green
+CLM00445,Meena Kumari,Narayana Kolkata,Chemotherapy,202795,17,CLEAR ✅,green
+CLM00446,Ravi Verma,Kokilaben Mumbai,Spinal Fusion,114774,5,CLEAR ✅,green
+CLM00447,Amit Singh,Medanta Gurugram,Angioplasty,94462,7,CLEAR ✅,green
+CLM00448,Rajesh Kumar,Manipal Pune,Angioplasty,38975,,CLEAR ✅,green
+CLM00449,Suresh Yadav,Apollo Mumbai,Cardiac Stenting,5622,,CLEAR ✅,green
+CLM00450,Anita Gupta,Kokilaben Mumbai,Appendectomy,190934,5,CLEAR ✅,green
+CLM00451,Sunita Devi,PGIMER Chandigarh,Hernia Repair,113459,3,CLEAR ✅,green
+CLM00452,Anita Gupta,Narayana Kolkata,Tonsillectomy,100639,,CLEAR ✅,green
+CLM00453,Vikram Joshi,Amrita Kochi,Liver Biopsy,118254,,CLEAR ✅,green
+CLM00454,Anita Gupta,Manipal Pune,Cataract Surgery,63241,3,CLEAR ✅,green
+CLM00455,Deepak Nair,Manipal Pune,Knee Replacement,72878,20,CLEAR ✅,green
+CLM00456,Mohan Lal,Lilavati Mumbai,Bypass Surgery,152004,,CLEAR ✅,green
+CLM00457,Deepak Nair,PGIMER Chandigarh,Laparoscopy,108778,24,CLEAR ✅,green
+CLM00458,Suresh Yadav,KIMS Hyderabad,Hernia Repair,122660,7,CLEAR ✅,green
+CLM00459,Meena Kumari,Fortis Bangalore,Spinal Fusion,41756,30,CLEAR ✅,green
+CLM00460,Kavita Patel,AIIMS Delhi,Hip Replacement,87746,18,CLEAR ✅,green
+CLM00461,Meena Kumari,KIMS Hyderabad,Appendectomy,16171,,CLEAR ✅,green
+CLM00462,Ravi Verma,Kokilaben Mumbai,Cataract Surgery,74748,2,CLEAR ✅,green
+CLM00463,Deepak Nair,AIIMS Delhi,Hernia Repair,168144,4,CLEAR ✅,green
+CLM00464,Rajesh Kumar,CMC Vellore,Hernia Repair,246004,2,CLEAR ✅,green
+CLM00465,Deepak Nair,Lilavati Mumbai,Bypass Surgery,99677,2,CLEAR ✅,green
+CLM00466,Suresh Yadav,Lilavati Mumbai,Angioplasty,173327,,CLEAR ✅,green
+CLM00467,Arun Tiwari,Max Chennai,Gallbladder Removal,244235,2,CLEAR ✅,green
+CLM00468,Suresh Yadav,Yashoda Hyderabad,Knee Replacement,33174,1,CLEAR ✅,green
+CLM00469,Kavita Patel,CMC Vellore,Liver Biopsy,1602555,49,REVIEW ⚠️,yellow
+CLM00470,Mohan Lal,Fortis Bangalore,Hip Replacement,255411,,CLEAR ✅,green
+CLM00471,Sita Ram,Ruby Hall Pune,Gallbladder Removal,234449,20,CLEAR ✅,green
+CLM00472,Rajesh Kumar,Ruby Hall Pune,Cardiac Stenting,104755,1,CLEAR ✅,green
+CLM00473,Mohan Lal,Kokilaben Mumbai,Laparoscopy,238555,5,CLEAR ✅,green
+CLM00474,Meena Kumari,Fortis Bangalore,Bypass Surgery,168057,4,CLEAR ✅,green
+CLM00475,Meena Kumari,AIIMS Delhi,Hernia Repair,112805,,CLEAR ✅,green
+CLM00476,Kavita Patel,Yashoda Hyderabad,Tonsillectomy,42502,25,CLEAR ✅,green
+CLM00477,Mohan Lal,KIMS Hyderabad,Bypass Surgery,139212,30,CLEAR ✅,green
+CLM00478,Rajesh Kumar,Max Chennai,Hernia Repair,80509,29,CLEAR ✅,green
+CLM00479,Vikram Joshi,Apollo Mumbai,Bypass Surgery,197620,,CLEAR ✅,green
+CLM00480,Sita Ram,Manipal Pune,Knee Replacement,1648396,35,CLEAR ✅,green
+CLM00481,Vikram Joshi,Apollo Mumbai,Gallbladder Removal,212862,3,CLEAR ✅,green
+CLM00482,Anita Gupta,PGIMER Chandigarh,Liver Biopsy,204024,8,CLEAR ✅,green
+CLM00483,Vikram Joshi,Fortis Bangalore,Knee Replacement,174492,6,CLEAR ✅,green
+CLM00484,Ravi Verma,CMC Vellore,Bypass Surgery,50025,2,CLEAR ✅,green
+CLM00485,Meena Kumari,AIIMS Delhi,Dialysis,182961,29,CLEAR ✅,green
+CLM00486,Arun Tiwari,Manipal Pune,Angioplasty,164940,3,CLEAR ✅,green
+CLM00487,Sunita Devi,Yashoda Hyderabad,Tonsillectomy,44662,33,CLEAR ✅,green
+CLM00488,Mohan Lal,Medanta Gurugram,Liver Biopsy,213033,6,CLEAR ✅,green
+CLM00489,Pooja Mishra,Yashoda Hyderabad,Knee Replacement,26893,,CLEAR ✅,green
+CLM00490,Kavita Patel,Narayana Kolkata,Angioplasty,102234,8,CLEAR ✅,green
+CLM00491,Ravi Verma,Narayana Kolkata,Hip Replacement,32668,22,CLEAR ✅,green
+CLM00492,Deepak Nair,Medanta Gurugram,Knee Replacement,61701,8,CLEAR ✅,green
+CLM00493,Anita Gupta,KIMS Hyderabad,Bypass Surgery,65851,17,CLEAR ✅,green
+CLM00494,Ravi Verma,Fortis Bangalore,Knee Replacement,94863,,CLEAR ✅,green
+CLM00495,Sita Ram,Lilavati Mumbai,Tonsillectomy,210327,21,CLEAR ✅,green
+CLM00496,Anita Gupta,Fortis Bangalore,Hernia Repair,155296,28,CLEAR ✅,green
+CLM00497,Sunita Devi,AIIMS Delhi,Angioplasty,1426902,53,REVIEW ⚠️,yellow
+CLM00498,Kavita Patel,Amrita Kochi,Knee Replacement,88533,6,CLEAR ✅,green
+CLM00499,Pooja Mishra,Manipal Pune,Liver Biopsy,92175,,CLEAR ✅,green
+CLM00500,Pooja Mishra,Apollo Mumbai,Angioplasty,278032,30,CLEAR ✅,green

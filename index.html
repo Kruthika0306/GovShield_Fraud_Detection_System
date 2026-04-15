@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GovShield - AI Fraud Detection System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{background:#0a0a0f;color:#e2e8f0;font-family:'Segoe UI',sans-serif;margin:0}
+.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1)}
+.glass-red{background:rgba(220,38,38,0.1);backdrop-filter:blur(10px);border:1px solid rgba(220,38,38,0.3)}
+.glass-green{background:rgba(34,197,94,0.1);backdrop-filter:blur(10px);border:1px solid rgba(34,197,94,0.3)}
+.glass-yellow{background:rgba(234,179,8,0.1);backdrop-filter:blur(10px);border:1px solid rgba(234,179,8,0.3)}
+.glass-blue{background:rgba(59,130,246,0.1);backdrop-filter:blur(10px);border:1px solid rgba(59,130,246,0.3)}
+.nav-btn{transition:all 0.3s;cursor:pointer;border:1px solid rgba(255,255,255,0.1)}
+.nav-btn.active{background:rgba(220,38,38,0.3);border-color:rgba(220,38,38,0.6);color:#f87171}
+.nav-btn:hover{background:rgba(255,255,255,0.08)}
+.pulse-red{animation:pulseRed 2s infinite}
+@keyframes pulseRed{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,0.4)}50%{box-shadow:0 0 0 10px rgba(220,38,38,0)}}
+.slide-in{animation:slideIn 0.3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.chat-msg{animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#1a1a2e}
+::-webkit-scrollbar-thumb{background:#dc2626;border-radius:3px}
+.modal-overlay{background:rgba(0,0,0,0.85);backdrop-filter:blur(6px)}
+input[type=range]{accent-color:#dc2626;width:100%}
+table{border-collapse:collapse;width:100%}
+th{position:sticky;top:0;z-index:10;background:#0f0f1a;color:#9ca3af;font-size:11px;text-transform:uppercase;letter-spacing:0.05em}
+td,th{padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.05)}
+tr:hover td{background:rgba(220,38,38,0.05);cursor:pointer}
+.risk-badge-red{background:rgba(220,38,38,0.2);color:#f87171;border:1px solid rgba(220,38,38,0.4);padding:2px 8px;border-radius:12px;font-size:11px;white-space:nowrap;display:inline-block}
+.risk-badge-yellow{background:rgba(234,179,8,0.2);color:#fbbf24;border:1px solid rgba(234,179,8,0.4);padding:2px 8px;border-radius:12px;font-size:11px;white-space:nowrap;display:inline-block}
+.risk-badge-green{background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);padding:2px 8px;border-radius:12px;font-size:11px;white-space:nowrap;display:inline-block}
+.score-bar-wrap{width:80px;height:6px;background:#1f2937;border-radius:3px;display:inline-block;vertical-align:middle}
+.score-bar-fill{height:100%;border-radius:3px;transition:width 0.4s}
+.tab-btn{padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;background:transparent}
+.tab-btn.active{background:rgba(220,38,38,0.3);border-color:rgba(220,38,38,0.5);color:#f87171}
+.tab-btn:not(.active){color:#9ca3af}
+.tab-btn:not(.active):hover{background:rgba(255,255,255,0.05);color:#e2e8f0}
+.grid-bg{background-image:linear-gradient(rgba(220,38,38,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,0.03) 1px,transparent 1px);background-size:40px 40px}
+select,input[type=number],input[type=text]{background:#111827;border:1px solid #374151;color:#e2e8f0;border-radius:6px;padding:6px 10px;font-size:12px;outline:none}
+select:focus,input:focus{border-color:#dc2626}
+.btn-red{background:#dc2626;color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px;transition:background 0.2s}
+.btn-red:hover{background:#b91c1c}
+.btn-ghost{background:rgba(220,38,38,0.1);color:#f87171;border:1px solid rgba(220,38,38,0.3);border-radius:8px;padding:6px 14px;cursor:pointer;font-size:12px;transition:all 0.2s}
+.btn-ghost:hover{background:rgba(220,38,38,0.2)}
+</style>
+</head>
+<body class="min-h-screen grid-bg">
+
+<!-- HEADER -->
+<header class="glass border-b border-red-900/30 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-lg bg-red-600 flex items-center justify-center pulse-red">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+      </svg>
+    </div>
+    <div>
+      <h1 class="text-xl font-bold text-red-400 tracking-widest">GOVSHIELD</h1>
+      <p class="text-xs text-gray-500">Ayushman Bharat Fraud Intelligence System</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 text-sm">
+      <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+      <span class="text-green-400 text-xs">System Active</span>
+    </div>
+    <div class="text-xs text-gray-400" id="claimsCount">500 Claims Loaded</div>
+    <button onclick="openUploadModal()" class="btn-ghost">&#128228; Upload CSV</button>
+    <button onclick="exportCSV()" class="btn-ghost">&#128229; Export</button>
+  </div>
+</header>
+
+<!-- MODE NAV -->
+<nav class="glass border-b border-gray-800 px-6 py-2 flex gap-2 flex-wrap">
+  <button onclick="setMode('investigator')" class="nav-btn active px-4 py-2 rounded-lg text-sm" id="mode-investigator">&#128269; Investigator</button>
+  <button onclick="setMode('analyst')" class="nav-btn px-4 py-2 rounded-lg text-sm" id="mode-analyst">&#128202; Analyst</button>
+  <button onclick="setMode('quickscan')" class="nav-btn px-4 py-2 rounded-lg text-sm" id="mode-quickscan">&#9889; Quick Scan</button>
+  <button onclick="setMode('experiment')" class="nav-btn px-4 py-2 rounded-lg text-sm" id="mode-experiment">&#129514; Experiment</button>
+  <button onclick="setMode('hospital')" class="nav-btn px-4 py-2 rounded-lg text-sm" id="mode-hospital">&#127973; Hospital Intel</button>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div style="display:flex;height:calc(100vh - 112px)">
+
+  <!-- LEFT SIDEBAR -->
+  <aside style="width:270px;flex-shrink:0" class="glass border-r border-gray-800 flex flex-col overflow-hidden">
+
+    <!-- Thresholds -->
+    <div class="p-4 border-b border-gray-800">
+      <h3 class="text-xs font-semibold text-red-400 uppercase tracking-wider mb-3">&#9881;&#65039; Detection Thresholds</h3>
+      <div class="space-y-3">
+        <div>
+          <div class="flex justify-between text-xs mb-1">
+            <span class="text-gray-400">Fraud Threshold</span>
+            <span class="text-red-400 font-bold" id="fraudThreshVal">70</span>
+          </div>
+          <input type="range" min="50" max="95" value="70" id="fraudThresh" oninput="updateThresholds()">
+        </div>
+        <div>
+          <div class="flex justify-between text-xs mb-1">
+            <span class="text-gray-400">Review Threshold</span>
+            <span class="text-yellow-400 font-bold" id="reviewThreshVal">40</span>
+          </div>
+          <input type="range" min="20" max="65" value="40" id="reviewThresh" oninput="updateThresholds()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Stats -->
+    <div class="p-4 border-b border-gray-800">
+      <h3 class="text-xs font-semibold text-red-400 uppercase tracking-wider mb-3">&#128200; Live Stats</h3>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="glass-red rounded-lg p-2 text-center">
+          <div class="text-xl font-bold text-red-400" id="statFlagged">0</div>
+          <div class="text-xs text-gray-400">Flagged &#128680;</div>
+        </div>
+        <div class="glass-yellow rounded-lg p-2 text-center">
+          <div class="text-xl font-bold text-yellow-400" id="statReview">0</div>
+          <div class="text-xs text-gray-400">Review &#9888;&#65039;</div>
+        </div>
+        <div class="glass-green rounded-lg p-2 text-center">
+          <div class="text-xl font-bold text-green-400" id="statClear">0</div>
+          <div class="text-xs text-gray-400">Clear &#9989;</div>
+        </div>
+        <div class="glass-blue rounded-lg p-2 text-center">
+          <div class="text-xl font-bold text-blue-400" id="statSaved">&#8377;0</div>
+          <div class="text-xs text-gray-400">Saved (Cr)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Rules -->
+    <div class="p-4 border-b border-gray-800" style="overflow-y:auto;max-height:220px">
+      <h3 class="text-xs font-semibold text-red-400 uppercase tracking-wider mb-3">&#129513; Custom Rules</h3>
+      <div id="rulesList" class="space-y-1 mb-3"></div>
+      <div class="space-y-2">
+        <select id="ruleFeature" style="width:100%">
+          <option value="inflation_ratio">Inflation Ratio</option>
+          <option value="submission_count">Submission Count</option>
+          <option value="num_procedures_last_30_days">Procedures/30d</option>
+          <option value="claim_amount">Claim Amount</option>
+          <option value="days_admitted">Days Admitted</option>
+        </select>
+        <div style="display:flex;gap:4px">
+          <select id="ruleOp" style="flex:1">
+            <option value=">">&gt;</option>
+            <option value="<">&lt;</option>
+            <option value=">=">&gt;=</option>
+          </select>
+          <input type="number" id="ruleValue" placeholder="Value" style="flex:1">
+        </div>
+        <button onclick="addRule()" class="btn-ghost" style="width:100%">+ Add Rule</button>
+      </div>
+    </div>
+
+    <!-- Pattern Alerts -->
+    <div class="p-4" style="overflow-y:auto;flex:1">
+      <h3 class="text-xs font-semibold text-red-400 uppercase tracking-wider mb-2">&#128269; Pattern Alerts</h3>
+      <div id="patternAlerts" class="space-y-1 text-xs"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN PANEL -->
+  <main style="flex:1;overflow-y:auto" class="p-4" id="mainPanel"></main>
+
+  <!-- RIGHT: AI CHAT -->
+  <aside style="width:300px;flex-shrink:0" class="glass border-l border-gray-800 flex flex-col">
+    <div class="p-4 border-b border-gray-800">
+      <h3 class="text-sm font-semibold text-red-400 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse inline-block"></span>
+        &#129302; AI Assistant
+      </h3>
+    </div>
+    <div style="flex:1;overflow-y:auto" class="p-3 space-y-3" id="chatMessages">
+      <div class="chat-msg glass rounded-lg p-3 text-xs text-gray-300">
+        <span class="text-red-400 font-semibold">GovShield AI:</span> Hello! I'm your fraud intelligence assistant. Ask me about claims, patterns, or hospital risks.
+      </div>
+    </div>
+    <div class="p-3 border-t border-gray-800">
+      <div style="display:flex;gap:6px">
+        <input type="text" id="chatInput" placeholder="Ask about fraud patterns..." style="flex:1;background:#111827;border:1px solid #374151;color:#e2e8f0;border-radius:8px;padding:8px 12px;font-size:12px;outline:none" onkeypress="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()" class="btn-red" style="padding:8px 12px">&#10132;</button>
+      </div>
+      <div style="display:flex;gap:4px;margin-top:8px;flex-wrap:wrap">
+        <button onclick="quickChat('Why is this claim flagged?')" class="btn-ghost" style="font-size:10px;padding:3px 8px">Why flagged?</button>
+        <button onclick="quickChat('Show top fraud patterns')" class="btn-ghost" style="font-size:10px;padding:3px 8px">Patterns</button>
+        <button onclick="quickChat('Hospital risk analysis')" class="btn-ghost" style="font-size:10px;padding:3px 8px">Hospital risk</button>
+        <button onclick="quickChat('Impact of threshold changes')" class="btn-ghost" style="font-size:10px;padding:3px 8px">Thresholds</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- CASE MODAL -->
+<div id="caseModal" style="display:none" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="glass rounded-2xl border border-red-900/50 p-6 slide-in" style="width:100%;max-width:860px;max-height:90vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2 class="text-xl font-bold text-red-400">&#129534; Case Investigation</h2>
+      <button onclick="closeCaseModal()" style="color:#9ca3af;font-size:24px;background:none;border:none;cursor:pointer">&#10005;</button>
+    </div>
+    <div id="caseContent"></div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div id="uploadModal" style="display:none" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="glass rounded-2xl border border-red-900/50 p-6 slide-in" style="width:100%;max-width:500px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h2 class="text-lg font-bold text-red-400">&#128228; Upload Dataset</h2>
+      <button onclick="closeUploadModal()" style="color:#9ca3af;font-size:24px;background:none;border:none;cursor:pointer">&#10005;</button>
+    </div>
+    <div style="border:2px dashed rgba(220,38,38,0.4);border-radius:12px;padding:32px;text-align:center;margin-bottom:16px" id="dropZone">
+      <div style="font-size:40px;margin-bottom:8px">&#128193;</div>
+      <p class="text-gray-400 text-sm mb-3">Drop CSV file here or click to browse</p>
+      <input type="file" id="csvUpload" accept=".csv" style="display:none" onchange="handleUpload(event)">
+      <button onclick="document.getElementById('csvUpload').click()" class="btn-red">Browse File</button>
+    </div>
+    <div id="uploadStatus" class="text-sm text-gray-400"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA GENERATION
+// ============================================================
+const HOSPITALS=['AIIMS Delhi','Apollo Mumbai','Fortis Bangalore','Max Chennai','Medanta Gurugram','KIMS Hyderabad','Manipal Pune','Narayana Kolkata','Lilavati Mumbai','Kokilaben Mumbai','Ruby Hall Pune','Yashoda Hyderabad','Amrita Kochi','CMC Vellore','PGIMER Chandigarh'];
+const DISTRICTS=['Delhi','Mumbai','Bangalore','Chennai','Gurugram','Hyderabad','Pune','Kolkata','Mumbai','Mumbai','Pune','Hyderabad','Kochi','Vellore','Chandigarh'];
+const PROCEDURES=['Appendectomy','Knee Replacement','Cataract Surgery','Angioplasty','Dialysis','Chemotherapy','Hip Replacement','Bypass Surgery','Laparoscopy','Hernia Repair','Tonsillectomy','Gallbladder Removal','Spinal Fusion','Cardiac Stenting','Liver Biopsy'];
+const DIAGNOSES=['K35','M17','H26','I25','N18','C50','M16','I25.1','K80','K40','J35','K80.2','M43','I25.2','K76'];
+const NAMES=['Rajesh Kumar','Priya Sharma','Amit Singh','Sunita Devi','Mohan Lal','Kavita Patel','Suresh Yadav','Anita Gupta','Vikram Joshi','Meena Kumari','Ravi Verma','Pooja Mishra','Arun Tiwari','Sita Ram','Deepak Nair'];
+const DOCTORS=Array.from({length:30},(_,i)=>'DR'+String(i+1).padStart(3,'0'));
+
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function rf(a,b){return +(Math.random()*(b-a)+a).toFixed(2);}
+function rc(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+function generateDataset(){
+  const data=[];
+  const base=new Date('2024-01-01');
+  for(let i=0;i<500;i++){
+    const isFraud=Math.random()<0.25;
+    const pi=rand(0,14);
+    const hi=rand(0,14);
+    const mkt=rand(5000,200000);
+    let amt,sub,nproc,income,diag;
+    if(isFraud){
+      const t=rand(1,4);
+      if(t===1){amt=mkt*rf(5,20);sub=1;nproc=rand(1,3);income=rc(['LOW','MEDIUM']);}
+      else if(t===2){amt=mkt*rf(1,2);sub=rand(2,4);nproc=rand(1,3);income=rc(['LOW','MEDIUM']);}
+      else if(t===3){amt=mkt*rf(1.5,3);sub=1;nproc=rand(4,8);income=rc(['LOW','MEDIUM']);}
+      else{amt=mkt*rf(1,2);sub=1;nproc=rand(1,3);income='HIGH';}
+      diag=rand(0,1)?DIAGNOSES[rand(0,14)]:DIAGNOSES[pi];
+    } else {
+      amt=mkt*rf(0.8,1.5);sub=1;nproc=rand(1,3);income=rc(['LOW','MEDIUM']);diag=DIAGNOSES[pi];
+    }
+    const d=new Date(base.getTime()+rand(0,365)*86400000);
+    data.push({
+      claim_id:'CLM'+String(i+1).padStart(5,'0'),
+      patient_id:'PAT'+String(rand(1,400)).padStart(5,'0'),
+      patient_name:rc(NAMES),age:rand(18,80),gender:rc(['M','F']),
+      hospital_name:HOSPITALS[hi],hospital_district:DISTRICTS[hi],
+      procedure_name:PROCEDURES[pi],diagnosis_code:diag,
+      claim_amount:Math.round(amt),actual_market_rate:mkt,
+      days_admitted:rand(1,30),num_procedures_last_30_days:nproc,
+      patient_income_level:income,submission_count:sub,
+      doctor_id:rc(DOCTORS),claim_date:d.toISOString().split('T')[0],
+      fraud_label:isFraud?1:0
+    });
+  }
+  return data;
+}
+
+// ============================================================
+// ML ENGINE
+// ============================================================
+function computeFeatures(c){
+  return {
+    inflation_ratio:+(c.claim_amount/Math.max(c.actual_market_rate,1)).toFixed(3),
+    is_duplicate:c.submission_count>1?1:0,
+    suspicious_volume:c.num_procedures_last_30_days>=4?1:0,
+    income_mismatch:c.patient_income_level==='HIGH'?1:0,
+    submission_count:c.submission_count,
+    num_procedures_last_30_days:c.num_procedures_last_30_days,
+    days_admitted:c.days_admitted,
+    claim_amount:c.claim_amount
+  };
+}
+
+function computeFraudScore(f,ft,rt){
+  let score=0;const reasons=[];
+  if(f.inflation_ratio>10){score+=40;reasons.push({factor:'Inflation ratio critically high',impact:40,value:f.inflation_ratio.toFixed(1)+'x market rate'});}
+  else if(f.inflation_ratio>5){score+=25;reasons.push({factor:'Inflation ratio very high',impact:25,value:f.inflation_ratio.toFixed(1)+'x market rate'});}
+  else if(f.inflation_ratio>2){score+=10;reasons.push({factor:'Inflation ratio elevated',impact:10,value:f.inflation_ratio.toFixed(1)+'x market rate'});}
+  if(f.is_duplicate){score+=25;reasons.push({factor:'Duplicate submission detected',impact:25,value:f.submission_count+' submissions'});}
+  if(f.suspicious_volume){score+=20;reasons.push({factor:'Suspicious procedure frequency',impact:20,value:f.num_procedures_last_30_days+' procedures/30d'});}
+  if(f.income_mismatch){score+=20;reasons.push({factor:'Income mismatch with scheme',impact:20,value:'HIGH income level'});}
+  if(f.claim_amount>500000){score+=10;reasons.push({factor:'Unusually high claim amount',impact:10,value:'₹'+f.claim_amount.toLocaleString()});}
+  if(f.days_admitted>20){score+=5;reasons.push({factor:'Extended admission period',impact:5,value:f.days_admitted+' days'});}
+  score=Math.min(100,Math.max(0,score+rand(-3,3)));
+  let status,sc;
+  if(score>=ft){status='FLAGGED 🚨';sc='red';}
+  else if(score>=rt){status='REVIEW ⚠️';sc='yellow';}
+  else{status='CLEAR ✅';sc='green';}
+  return{score,status,statusClass:sc,reasons};
+}
+
+function applyCustomRules(c,f,rules){
+  const extra=[];
+  for(const r of rules){
+    const v=f[r.feature]!==undefined?f[r.feature]:c[r.feature];
+    let hit=false;
+    if(r.op==='>'&&v>r.value)hit=true;
+    else if(r.op==='<'&&v<r.value)hit=true;
+    else if(r.op==='>='&&v>=r.value)hit=true;
+    if(hit)extra.push({factor:'Custom Rule: '+r.feature+' '+r.op+' '+r.value,impact:15,value:''+v});
+  }
+  return extra;
+}
+
+// ============================================================
+// STATE
+// ============================================================
+let claimsData=[];
+let processedClaims=[];
+let customRules=[];
+let currentMode='investigator';
+let fraudThreshold=70;
+let reviewThreshold=40;
+let charts={};
+let selectedClaim=null;
+let searchQuery='';
+let sortField='fraud_risk_score';
+let sortDir=-1;
+
+function processAllClaims(){
+  processedClaims=claimsData.map(c=>{
+    const f=computeFeatures(c);
+    const r=computeFraudScore(f,fraudThreshold,reviewThreshold);
+    const cr=applyCustomRules(c,f,customRules);
+    const allR=[...r.reasons,...cr];
+    const adj=Math.min(100,r.score+(cr.length*15));
+    let status,sc;
+    if(adj>=fraudThreshold){status='FLAGGED 🚨';sc='red';}
+    else if(adj>=reviewThreshold){status='REVIEW ⚠️';sc='yellow';}
+    else{status='CLEAR ✅';sc='green';}
+    return{...c,features:f,fraud_risk_score:adj,status,statusClass:sc,reasons:allR};
+  });
+  updateStats();
+  updatePatternAlerts();
+  renderCurrentMode();
+}
+
+function updateStats(){
+  const fl=processedClaims.filter(c=>c.statusClass==='red');
+  const rv=processedClaims.filter(c=>c.statusClass==='yellow');
+  const cl=processedClaims.filter(c=>c.statusClass==='green');
+  const saved=fl.reduce((s,c)=>s+c.claim_amount,0);
+  document.getElementById('statFlagged').textContent=fl.length;
+  document.getElementById('statReview').textContent=rv.length;
+  document.getElementById('statClear').textContent=cl.length;
+  document.getElementById('statSaved').textContent='₹'+(saved/10000000).toFixed(1)+'Cr';
+  document.getElementById('claimsCount').textContent=processedClaims.length+' Claims Loaded';
+}
+
+function updateThresholds(){
+  fraudThreshold=parseInt(document.getElementById('fraudThresh').value);
+  reviewThreshold=parseInt(document.getElementById('reviewThresh').value);
+  document.getElementById('fraudThreshVal').textContent=fraudThreshold;
+  document.getElementById('reviewThreshVal').textContent=reviewThreshold;
+  processAllClaims();
+}
+</script>
+
+<script>
+// ============================================================
+// PATTERN DISCOVERY
+// ============================================================
+function updatePatternAlerts(){
+  const alerts=[];
+  const hf={};
+  processedClaims.forEach(c=>{
+    if(!hf[c.hospital_name])hf[c.hospital_name]={t:0,f:0};
+    hf[c.hospital_name].t++;
+    if(c.statusClass==='red')hf[c.hospital_name].f++;
+  });
+  Object.entries(hf).forEach(([h,v])=>{
+    if(v.f/v.t>0.5&&v.t>5)alerts.push('🏥 '+h.split(' ')[0]+': '+Math.round(v.f/v.t*100)+'% fraud rate');
+  });
+  const df={};
+  processedClaims.forEach(c=>{
+    if(!df[c.doctor_id])df[c.doctor_id]={t:0,f:0};
+    df[c.doctor_id].t++;
+    if(c.statusClass==='red')df[c.doctor_id].f++;
+  });
+  Object.entries(df).forEach(([d,v])=>{if(v.f>=5)alerts.push('👨‍⚕️ '+d+': '+v.f+' flagged claims');});
+  const dup=processedClaims.filter(c=>c.submission_count>1);
+  if(dup.length>5)alerts.push('📋 '+dup.length+' duplicate submissions');
+  const hi=processedClaims.filter(c=>c.features.inflation_ratio>10);
+  if(hi.length>3)alerts.push('💰 '+hi.length+' claims with 10x+ inflation');
+  const el=document.getElementById('patternAlerts');
+  el.innerHTML=alerts.slice(0,8).map(a=>'<div class="glass-red rounded p-1.5 text-red-300 mb-1">'+a+'</div>').join('')||'<div style="color:#6b7280;font-size:11px">No critical patterns</div>';
+}
+
+// ============================================================
+// CUSTOM RULES
+// ============================================================
+function addRule(){
+  const feature=document.getElementById('ruleFeature').value;
+  const op=document.getElementById('ruleOp').value;
+  const value=parseFloat(document.getElementById('ruleValue').value);
+  if(isNaN(value))return;
+  customRules.push({id:Date.now(),feature,op,value});
+  document.getElementById('ruleValue').value='';
+  renderRules();
+  processAllClaims();
+}
+
+function removeRule(id){
+  customRules=customRules.filter(r=>r.id!==id);
+  renderRules();
+  processAllClaims();
+}
+
+function renderRules(){
+  const el=document.getElementById('rulesList');
+  if(!customRules.length){el.innerHTML='<div style="color:#6b7280;font-size:11px">No custom rules</div>';return;}
+  el.innerHTML=customRules.map(r=>`
+    <div class="glass-red rounded p-2 flex justify-between items-center" style="font-size:11px">
+      <span class="text-red-300">${r.feature} ${r.op} ${r.value}</span>
+      <button onclick="removeRule(${r.id})" style="color:#f87171;background:none;border:none;cursor:pointer;font-size:14px">&#10005;</button>
+    </div>`).join('');
+}
+
+// ============================================================
+// MODE SWITCHING
+// ============================================================
+function setMode(mode){
+  currentMode=mode;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('mode-'+mode).classList.add('active');
+  destroyCharts();
+  renderCurrentMode();
+}
+
+function destroyCharts(){
+  Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});
+  charts={};
+}
+
+function renderCurrentMode(){
+  const p=document.getElementById('mainPanel');
+  if(currentMode==='investigator')renderInvestigator(p);
+  else if(currentMode==='analyst')renderAnalyst(p);
+  else if(currentMode==='quickscan')renderQuickScan(p);
+  else if(currentMode==='experiment')renderExperiment(p);
+  else if(currentMode==='hospital')renderHospital(p);
+}
+
+// ============================================================
+// INVESTIGATOR MODE
+// ============================================================
+function renderInvestigator(p){
+  const filtered=getFilteredSorted();
+  p.innerHTML=`
+  <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap">
+    <input type="text" id="searchBox" placeholder="&#128269; Search claim, patient, hospital..." value="${searchQuery}"
+      oninput="searchQuery=this.value;renderCurrentMode()"
+      style="flex:1;min-width:200px;background:#111827;border:1px solid #374151;color:#e2e8f0;border-radius:8px;padding:8px 12px;font-size:13px;outline:none">
+    <select onchange="sortField=this.value;renderCurrentMode()" style="background:#111827;border:1px solid #374151;color:#e2e8f0;border-radius:8px;padding:8px 10px;font-size:12px">
+      <option value="fraud_risk_score" ${sortField==='fraud_risk_score'?'selected':''}>Sort: Risk Score</option>
+      <option value="claim_amount" ${sortField==='claim_amount'?'selected':''}>Sort: Amount</option>
+      <option value="claim_date" ${sortField==='claim_date'?'selected':''}>Sort: Date</option>
+    </select>
+    <select onchange="filterStatus=this.value;renderCurrentMode()" id="statusFilter" style="background:#111827;border:1px solid #374151;color:#e2e8f0;border-radius:8px;padding:8px 10px;font-size:12px">
+      <option value="all">All Status</option>
+      <option value="red">Flagged Only</option>
+      <option value="yellow">Review Only</option>
+      <option value="green">Clear Only</option>
+    </select>
+    <span style="color:#9ca3af;font-size:12px">${filtered.length} results</span>
+  </div>
+  <div class="glass rounded-xl" style="overflow:hidden">
+    <div style="overflow-x:auto;max-height:calc(100vh - 240px);overflow-y:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Claim ID</th><th>Patient</th><th>Hospital</th><th>Procedure</th>
+            <th>Amount</th><th>Risk Score</th><th>Status</th><th>Date</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filtered.map(c=>`
+          <tr onclick="openCase('${c.claim_id}')">
+            <td style="font-size:11px;color:#60a5fa;font-family:monospace">${c.claim_id}</td>
+            <td style="font-size:12px">
+              <div style="font-weight:600">${c.patient_name}</div>
+              <div style="color:#9ca3af;font-size:10px">${c.age}y ${c.gender} | ${c.patient_income_level}</div>
+            </td>
+            <td style="font-size:11px;color:#d1d5db">${c.hospital_name}</td>
+            <td style="font-size:11px;color:#d1d5db">${c.procedure_name}</td>
+            <td style="font-size:12px;font-weight:600;color:#f9fafb">₹${c.claim_amount.toLocaleString()}</td>
+            <td>
+              <div style="display:flex;align-items:center;gap:6px">
+                <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${c.fraud_risk_score}%;background:${c.statusClass==='red'?'#dc2626':c.statusClass==='yellow'?'#eab308':'#22c55e'}"></div></div>
+                <span style="font-size:11px;font-weight:700;color:${c.statusClass==='red'?'#f87171':c.statusClass==='yellow'?'#fbbf24':'#4ade80'}">${c.fraud_risk_score}</span>
+              </div>
+            </td>
+            <td><span class="risk-badge-${c.statusClass}">${c.status}</span></td>
+            <td style="font-size:11px;color:#9ca3af">${c.claim_date}</td>
+            <td><button onclick="event.stopPropagation();openCase('${c.claim_id}')" class="btn-ghost" style="font-size:10px;padding:3px 8px">Investigate</button></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+let filterStatus='all';
+function getFilteredSorted(){
+  let d=[...processedClaims];
+  if(searchQuery){
+    const q=searchQuery.toLowerCase();
+    d=d.filter(c=>c.claim_id.toLowerCase().includes(q)||c.patient_name.toLowerCase().includes(q)||c.hospital_name.toLowerCase().includes(q)||c.procedure_name.toLowerCase().includes(q));
+  }
+  if(filterStatus!=='all')d=d.filter(c=>c.statusClass===filterStatus);
+  d.sort((a,b)=>{
+    if(sortField==='claim_date')return sortDir*(new Date(b.claim_date)-new Date(a.claim_date));
+    return sortDir*(b[sortField]-a[sortField]);
+  });
+  return d;
+}
+</script>
+
+<script>
+// ============================================================
+// CASE INVESTIGATION MODAL
+// ============================================================
+function openCase(claimId){
+  const c=processedClaims.find(x=>x.claim_id===claimId);
+  if(!c)return;
+  selectedClaim=c;
+  const similar=processedClaims.filter(x=>x.hospital_name===c.hospital_name&&x.claim_id!==c.claim_id&&x.statusClass==='red').slice(0,5);
+  const patHistory=processedClaims.filter(x=>x.patient_id===c.patient_id&&x.claim_id!==c.claim_id).slice(0,5);
+  document.getElementById('caseContent').innerHTML=`
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="glass-red rounded-xl p-4">
+      <h3 style="color:#f87171;font-size:13px;font-weight:700;margin-bottom:12px">&#128100; Patient Profile</h3>
+      <div style="space-y:4px;font-size:12px">
+        ${row('Claim ID',c.claim_id)}${row('Patient',c.patient_name)}${row('Age/Gender',c.age+'y / '+c.gender)}
+        ${row('Income Level',c.patient_income_level)}${row('Patient ID',c.patient_id)}
+      </div>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <h3 style="color:#60a5fa;font-size:13px;font-weight:700;margin-bottom:12px">&#127973; Hospital & Procedure</h3>
+      <div style="font-size:12px">
+        ${row('Hospital',c.hospital_name)}${row('District',c.hospital_district)}
+        ${row('Procedure',c.procedure_name)}${row('Diagnosis',c.diagnosis_code)}
+        ${row('Doctor',c.doctor_id)}${row('Days Admitted',c.days_admitted)}
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="glass rounded-xl p-4">
+      <h3 style="color:#fbbf24;font-size:13px;font-weight:700;margin-bottom:12px">&#128176; Financial Analysis</h3>
+      <div style="font-size:12px">
+        ${row('Claim Amount','₹'+c.claim_amount.toLocaleString())}
+        ${row('Market Rate','₹'+c.actual_market_rate.toLocaleString())}
+        ${row('Inflation Ratio',c.features.inflation_ratio.toFixed(2)+'x')}
+        ${row('Submission Count',c.submission_count)}
+        ${row('Procedures/30d',c.num_procedures_last_30_days)}
+      </div>
+    </div>
+    <div class="glass rounded-xl p-4">
+      <h3 style="color:#${c.statusClass==='red'?'f87171':c.statusClass==='yellow'?'fbbf24':'4ade80'};font-size:13px;font-weight:700;margin-bottom:12px">&#129504; AI Risk Assessment</h3>
+      <div style="text-align:center;margin-bottom:12px">
+        <div style="font-size:48px;font-weight:900;color:${c.statusClass==='red'?'#f87171':c.statusClass==='yellow'?'#fbbf24':'#4ade80'}">${c.fraud_risk_score}</div>
+        <div><span class="risk-badge-${c.statusClass}">${c.status}</span></div>
+      </div>
+      <div style="background:#1f2937;border-radius:6px;height:8px;margin-bottom:8px">
+        <div style="height:100%;border-radius:6px;width:${c.fraud_risk_score}%;background:${c.statusClass==='red'?'#dc2626':c.statusClass==='yellow'?'#eab308':'#22c55e'};transition:width 0.5s"></div>
+      </div>
+    </div>
+  </div>
+  <div class="glass rounded-xl p-4 mb-4">
+    <h3 style="color:#f87171;font-size:13px;font-weight:700;margin-bottom:12px">&#129504; Explainable AI — Fraud Reasons</h3>
+    ${c.reasons.length?c.reasons.map(r=>`
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div style="flex:1">
+          <div style="font-size:12px;color:#e2e8f0;font-weight:600">${r.factor}</div>
+          <div style="font-size:11px;color:#9ca3af">${r.value}</div>
+        </div>
+        <div style="text-align:right;min-width:60px">
+          <div style="font-size:13px;font-weight:700;color:#f87171">+${r.impact}</div>
+          <div style="width:60px;height:6px;background:#1f2937;border-radius:3px;margin-top:2px">
+            <div style="height:100%;border-radius:3px;width:${Math.min(100,r.impact*2)}%;background:linear-gradient(90deg,#dc2626,#f97316)"></div>
+          </div>
+        </div>
+      </div>`).join(''):'<div style="color:#4ade80;font-size:12px">&#9989; No fraud indicators detected</div>'}
+  </div>
+  ${patHistory.length?`<div class="glass rounded-xl p-4 mb-4">
+    <h3 style="color:#60a5fa;font-size:13px;font-weight:700;margin-bottom:10px">&#128203; Patient Claim History</h3>
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>Claim ID</th><th>Procedure</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+      <tbody>${patHistory.map(x=>`<tr><td style="font-size:11px;color:#60a5fa">${x.claim_id}</td><td style="font-size:11px">${x.procedure_name}</td><td style="font-size:11px">₹${x.claim_amount.toLocaleString()}</td><td><span class="risk-badge-${x.statusClass}">${x.status}</span></td><td style="font-size:11px;color:#9ca3af">${x.claim_date}</td></tr>`).join('')}
+      </tbody></table></div></div>`:''}
+  ${similar.length?`<div class="glass rounded-xl p-4">
+    <h3 style="color:#f87171;font-size:13px;font-weight:700;margin-bottom:10px">&#128680; Similar Fraud Cases — Same Hospital</h3>
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th>Claim ID</th><th>Patient</th><th>Procedure</th><th>Amount</th><th>Risk</th></tr></thead>
+      <tbody>${similar.map(x=>`<tr onclick="openCase('${x.claim_id}')" style="cursor:pointer"><td style="font-size:11px;color:#60a5fa">${x.claim_id}</td><td style="font-size:11px">${x.patient_name}</td><td style="font-size:11px">${x.procedure_name}</td><td style="font-size:11px">₹${x.claim_amount.toLocaleString()}</td><td><span class="risk-badge-red">${x.fraud_risk_score}</span></td></tr>`).join('')}
+      </tbody></table></div></div>`:''}
+  `;
+  document.getElementById('caseModal').style.display='flex';
+}
+
+function row(label,val){return `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05)"><span style="color:#9ca3af">${label}</span><span style="color:#e2e8f0;font-weight:600">${val}</span></div>`;}
+function closeCaseModal(){document.getElementById('caseModal').style.display='none';}
+</script>
+
+<script>
+// ============================================================
+// ANALYST MODE
+// ============================================================
+function renderAnalyst(p){
+  p.innerHTML=`
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="glass rounded-xl p-4"><canvas id="chartDist" height="200"></canvas></div>
+    <div class="glass rounded-xl p-4"><canvas id="chartRisk" height="200"></canvas></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="glass rounded-xl p-4"><canvas id="chartHosp" height="220"></canvas></div>
+    <div class="glass rounded-xl p-4"><canvas id="chartScatter" height="220"></canvas></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    ${infCard('Total Claims',processedClaims.length,'#60a5fa','📊')}
+    ${infCard('Fraud Detected',processedClaims.filter(c=>c.statusClass==='red').length,'#f87171','🚨')}
+    ${infCard('Fraud Rate',Math.round(processedClaims.filter(c=>c.statusClass==='red').length/processedClaims.length*100)+'%','#f97316','📈')}
+    ${infCard('Money at Risk','₹'+Math.round(processedClaims.filter(c=>c.statusClass==='red').reduce((s,c)=>s+c.claim_amount,0)/10000000)+'Cr','#fbbf24','💰')}
+  </div>`;
+  setTimeout(()=>{
+    buildDistChart();buildRiskChart();buildHospChart();buildScatterChart();
+  },50);
+}
+
+function infCard(label,val,color,icon){
+  return `<div class="glass rounded-xl p-4 text-center">
+    <div style="font-size:24px;margin-bottom:4px">${icon}</div>
+    <div style="font-size:24px;font-weight:900;color:${color}">${val}</div>
+    <div style="font-size:11px;color:#9ca3af">${label}</div>
+  </div>`;
+}
+
+function buildDistChart(){
+  const fl=processedClaims.filter(c=>c.statusClass==='red').length;
+  const rv=processedClaims.filter(c=>c.statusClass==='yellow').length;
+  const cl=processedClaims.filter(c=>c.statusClass==='green').length;
+  const ctx=document.getElementById('chartDist');
+  if(!ctx)return;
+  charts.dist=new Chart(ctx,{type:'doughnut',data:{labels:['Flagged','Review','Clear'],datasets:[{data:[fl,rv,cl],backgroundColor:['rgba(220,38,38,0.8)','rgba(234,179,8,0.8)','rgba(34,197,94,0.8)'],borderColor:['#dc2626','#eab308','#22c55e'],borderWidth:2}]},options:{responsive:true,plugins:{legend:{labels:{color:'#e2e8f0',font:{size:11}}},title:{display:true,text:'Fraud vs Legitimate Distribution',color:'#e2e8f0',font:{size:13}}}}});
+}
+
+function buildRiskChart(){
+  const bins=Array(10).fill(0);
+  processedClaims.forEach(c=>{const b=Math.min(9,Math.floor(c.fraud_risk_score/10));bins[b]++;});
+  const ctx=document.getElementById('chartRisk');
+  if(!ctx)return;
+  charts.risk=new Chart(ctx,{type:'bar',data:{labels:['0-9','10-19','20-29','30-39','40-49','50-59','60-69','70-79','80-89','90-100'],datasets:[{label:'Claims',data:bins,backgroundColor:bins.map((_,i)=>i>=7?'rgba(220,38,38,0.8)':i>=4?'rgba(234,179,8,0.8)':'rgba(34,197,94,0.8)'),borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Risk Score Distribution',color:'#e2e8f0',font:{size:13}}},scales:{x:{ticks:{color:'#9ca3af',font:{size:10}},grid:{color:'rgba(255,255,255,0.05)'}},y:{ticks:{color:'#9ca3af'},grid:{color:'rgba(255,255,255,0.05)'}}}}});
+}
+
+function buildHospChart(){
+  const hd={};
+  processedClaims.forEach(c=>{
+    if(!hd[c.hospital_name])hd[c.hospital_name]={risk:0,total:0};
+    hd[c.hospital_name].total+=c.claim_amount;
+    if(c.statusClass==='red')hd[c.hospital_name].risk+=c.claim_amount;
+  });
+  const sorted=Object.entries(hd).sort((a,b)=>b[1].risk-a[1].risk).slice(0,8);
+  const ctx=document.getElementById('chartHosp');
+  if(!ctx)return;
+  charts.hosp=new Chart(ctx,{type:'bar',data:{labels:sorted.map(([h])=>h.split(' ')[0]+' '+h.split(' ')[1]),datasets:[{label:'Money at Risk (₹)',data:sorted.map(([,v])=>v.risk),backgroundColor:'rgba(220,38,38,0.7)',borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Top Hospitals by Money at Risk',color:'#e2e8f0',font:{size:13}}},scales:{x:{ticks:{color:'#9ca3af',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'}},y:{ticks:{color:'#9ca3af',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'}}}}});
+}
+
+function buildScatterChart(){
+  const flagged=processedClaims.filter(c=>c.statusClass==='red').slice(0,80);
+  const clear=processedClaims.filter(c=>c.statusClass==='green').slice(0,80);
+  const review=processedClaims.filter(c=>c.statusClass==='yellow').slice(0,60);
+  const ctx=document.getElementById('chartScatter');
+  if(!ctx)return;
+  charts.scatter=new Chart(ctx,{type:'scatter',data:{datasets:[
+    {label:'Flagged',data:flagged.map(c=>({x:c.claim_amount/1000,y:c.features.inflation_ratio})),backgroundColor:'rgba(220,38,38,0.7)',pointRadius:4},
+    {label:'Review',data:review.map(c=>({x:c.claim_amount/1000,y:c.features.inflation_ratio})),backgroundColor:'rgba(234,179,8,0.7)',pointRadius:3},
+    {label:'Clear',data:clear.map(c=>({x:c.claim_amount/1000,y:c.features.inflation_ratio})),backgroundColor:'rgba(34,197,94,0.5)',pointRadius:3}
+  ]},options:{responsive:true,plugins:{legend:{labels:{color:'#e2e8f0',font:{size:10}}},title:{display:true,text:'Anomaly Scatter: Amount vs Inflation Ratio',color:'#e2e8f0',font:{size:13}}},scales:{x:{title:{display:true,text:'Claim Amount (₹K)',color:'#9ca3af'},ticks:{color:'#9ca3af'},grid:{color:'rgba(255,255,255,0.05)'}},y:{title:{display:true,text:'Inflation Ratio',color:'#9ca3af'},ticks:{color:'#9ca3af'},grid:{color:'rgba(255,255,255,0.05)'}}}}});
+}
+</script>
+
+<script>
+// ============================================================
+// QUICK SCAN MODE
+// ============================================================
+function renderQuickScan(p){
+  const flagged=processedClaims.filter(c=>c.statusClass==='red').sort((a,b)=>b.fraud_risk_score-a.fraud_risk_score);
+  const review=processedClaims.filter(c=>c.statusClass==='yellow').sort((a,b)=>b.fraud_risk_score-a.fraud_risk_score).slice(0,10);
+  p.innerHTML=`
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+    <div class="glass-red rounded-xl p-4 text-center">
+      <div style="font-size:36px;font-weight:900;color:#f87171">${flagged.length}</div>
+      <div style="font-size:12px;color:#9ca3af">Critical Alerts 🚨</div>
+      <div style="font-size:11px;color:#f87171;margin-top:4px">₹${Math.round(flagged.reduce((s,c)=>s+c.claim_amount,0)/10000000)}Cr at risk</div>
+    </div>
+    <div class="glass-yellow rounded-xl p-4 text-center">
+      <div style="font-size:36px;font-weight:900;color:#fbbf24">${review.length}</div>
+      <div style="font-size:12px;color:#9ca3af">Needs Review ⚠️</div>
+    </div>
+    <div class="glass-green rounded-xl p-4 text-center">
+      <div style="font-size:36px;font-weight:900;color:#4ade80">${processedClaims.filter(c=>c.statusClass==='green').length}</div>
+      <div style="font-size:12px;color:#9ca3af">Cleared ✅</div>
+    </div>
+  </div>
+  <h3 style="color:#f87171;font-size:14px;font-weight:700;margin-bottom:10px">🚨 Top Critical Alerts</h3>
+  <div style="display:grid;gap:8px;max-height:calc(100vh - 340px);overflow-y:auto">
+    ${flagged.slice(0,20).map(c=>`
+    <div class="glass-red rounded-xl p-4 slide-in" style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openCase('${c.claim_id}')">
+      <div style="width:52px;height:52px;border-radius:50%;background:rgba(220,38,38,0.3);border:2px solid #dc2626;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="font-size:16px;font-weight:900;color:#f87171">${c.fraud_risk_score}</span>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-weight:700;font-size:13px">${c.patient_name}</span>
+          <span class="risk-badge-red">${c.status}</span>
+        </div>
+        <div style="font-size:11px;color:#9ca3af">${c.hospital_name} • ${c.procedure_name} • ${c.claim_id}</div>
+        <div style="font-size:12px;color:#fbbf24;font-weight:600;margin-top:2px">₹${c.claim_amount.toLocaleString()} <span style="color:#9ca3af;font-weight:400">(${c.features.inflation_ratio.toFixed(1)}x market)</span></div>
+        <div style="font-size:10px;color:#f87171;margin-top:2px">${c.reasons.slice(0,2).map(r=>r.factor).join(' • ')}</div>
+      </div>
+      <button onclick="event.stopPropagation();openCase('${c.claim_id}')" class="btn-ghost" style="flex-shrink:0">Investigate</button>
+    </div>`).join('')}
+  </div>`;
+}
+
+// ============================================================
+// EXPERIMENT MODE (WHAT-IF SIMULATOR)
+// ============================================================
+function renderExperiment(p){
+  const c=selectedClaim||processedClaims.find(x=>x.statusClass==='red')||processedClaims[0];
+  if(!c){p.innerHTML='<div class="text-gray-400 p-8 text-center">No claims loaded</div>';return;}
+  p.innerHTML=`
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="glass rounded-xl p-5">
+      <h3 style="color:#a78bfa;font-size:14px;font-weight:700;margin-bottom:4px">🧪 What-If Fraud Simulator</h3>
+      <p style="color:#9ca3af;font-size:11px;margin-bottom:16px">Edit claim values and see fraud score update instantly</p>
+      <div style="margin-bottom:10px">
+        <label style="font-size:11px;color:#9ca3af;display:block;margin-bottom:4px">Select Claim</label>
+        <select id="simClaimSelect" onchange="simSelectClaim(this.value)" style="width:100%">
+          ${processedClaims.slice(0,50).map(x=>`<option value="${x.claim_id}" ${x.claim_id===c.claim_id?'selected':''}>${x.claim_id} — ${x.patient_name}</option>`).join('')}
+        </select>
+      </div>
+      <div id="simFields">
+        ${simField('Claim Amount (₹)','sim_claim_amount',c.claim_amount,'number')}
+        ${simField('Market Rate (₹)','sim_market_rate',c.actual_market_rate,'number')}
+        ${simField('Submission Count','sim_submission_count',c.submission_count,'number')}
+        ${simField('Procedures/30d','sim_procedures',c.num_procedures_last_30_days,'number')}
+        ${simField('Days Admitted','sim_days',c.days_admitted,'number')}
+        <div style="margin-bottom:10px">
+          <label style="font-size:11px;color:#9ca3af;display:block;margin-bottom:4px">Income Level</label>
+          <select id="sim_income" onchange="runSimulation()" style="width:100%">
+            <option value="LOW" ${c.patient_income_level==='LOW'?'selected':''}>LOW</option>
+            <option value="MEDIUM" ${c.patient_income_level==='MEDIUM'?'selected':''}>MEDIUM</option>
+            <option value="HIGH" ${c.patient_income_level==='HIGH'?'selected':''}>HIGH</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="glass rounded-xl p-5">
+      <h3 style="color:#a78bfa;font-size:14px;font-weight:700;margin-bottom:16px">📊 Simulation Result</h3>
+      <div id="simResult">${buildSimResult(c)}</div>
+    </div>
+  </div>`;
+  window._simBase=c;
+}
+
+function simField(label,id,val,type){
+  return `<div style="margin-bottom:10px">
+    <label style="font-size:11px;color:#9ca3af;display:block;margin-bottom:4px">${label}</label>
+    <input type="${type}" id="${id}" value="${val}" oninput="runSimulation()" style="width:100%">
+  </div>`;
+}
+
+function simSelectClaim(id){
+  const c=processedClaims.find(x=>x.claim_id===id);
+  if(!c)return;
+  window._simBase=c;
+  document.getElementById('sim_claim_amount').value=c.claim_amount;
+  document.getElementById('sim_market_rate').value=c.actual_market_rate;
+  document.getElementById('sim_submission_count').value=c.submission_count;
+  document.getElementById('sim_procedures').value=c.num_procedures_last_30_days;
+  document.getElementById('sim_days').value=c.days_admitted;
+  document.getElementById('sim_income').value=c.patient_income_level;
+  runSimulation();
+}
+
+function runSimulation(){
+  const base=window._simBase;
+  if(!base)return;
+  const sim={
+    ...base,
+    claim_amount:parseFloat(document.getElementById('sim_claim_amount').value)||base.claim_amount,
+    actual_market_rate:parseFloat(document.getElementById('sim_market_rate').value)||base.actual_market_rate,
+    submission_count:parseInt(document.getElementById('sim_submission_count').value)||base.submission_count,
+    num_procedures_last_30_days:parseInt(document.getElementById('sim_procedures').value)||base.num_procedures_last_30_days,
+    days_admitted:parseInt(document.getElementById('sim_days').value)||base.days_admitted,
+    patient_income_level:document.getElementById('sim_income').value
+  };
+  const f=computeFeatures(sim);
+  const r=computeFraudScore(f,fraudThreshold,reviewThreshold);
+  document.getElementById('simResult').innerHTML=buildSimResult({...sim,features:f,fraud_risk_score:r.score,status:r.status,statusClass:r.statusClass,reasons:r.reasons});
+}
+
+function buildSimResult(c){
+  const color=c.statusClass==='red'?'#f87171':c.statusClass==='yellow'?'#fbbf24':'#4ade80';
+  const bg=c.statusClass==='red'?'rgba(220,38,38,0.2)':c.statusClass==='yellow'?'rgba(234,179,8,0.2)':'rgba(34,197,94,0.2)';
+  return `
+  <div style="text-align:center;padding:20px;background:${bg};border-radius:12px;margin-bottom:16px">
+    <div style="font-size:64px;font-weight:900;color:${color};line-height:1">${c.fraud_risk_score||0}</div>
+    <div style="font-size:14px;font-weight:700;color:${color};margin-top:4px">${c.status||'CLEAR ✅'}</div>
+    <div style="background:#1f2937;border-radius:6px;height:10px;margin-top:12px">
+      <div style="height:100%;border-radius:6px;width:${c.fraud_risk_score||0}%;background:${color};transition:width 0.5s"></div>
+    </div>
+  </div>
+  <div>
+    <h4 style="font-size:12px;color:#9ca3af;margin-bottom:8px;font-weight:600">FRAUD INDICATORS</h4>
+    ${(c.reasons||[]).length?c.reasons.map(r=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+        <div>
+          <div style="font-size:12px;color:#e2e8f0">${r.factor}</div>
+          <div style="font-size:10px;color:#9ca3af">${r.value}</div>
+        </div>
+        <span style="color:#f87171;font-weight:700;font-size:13px">+${r.impact}</span>
+      </div>`).join(''):'<div style="color:#4ade80;font-size:12px;padding:8px 0">✅ No fraud indicators</div>'}
+  </div>`;
+}
+</script>
+
+<script>
+// ============================================================
+// HOSPITAL INTEL MODE
+// ============================================================
+function renderHospital(p){
+  const hd={};
+  processedClaims.forEach(c=>{
+    if(!hd[c.hospital_name])hd[c.hospital_name]={name:c.hospital_name,district:c.hospital_district,total:0,flagged:0,review:0,clear:0,amount:0,riskAmount:0,doctors:new Set()};
+    const h=hd[c.hospital_name];
+    h.total++;h.amount+=c.claim_amount;h.doctors.add(c.doctor_id);
+    if(c.statusClass==='red'){h.flagged++;h.riskAmount+=c.claim_amount;}
+    else if(c.statusClass==='yellow')h.review++;
+    else h.clear++;
+  });
+  const hospitals=Object.values(hd).map(h=>({...h,doctors:h.doctors.size,fraudRate:Math.round(h.flagged/h.total*100),riskScore:Math.min(100,Math.round(h.flagged/h.total*100+h.riskAmount/h.amount*30))})).sort((a,b)=>b.riskScore-a.riskScore);
+
+  p.innerHTML=`
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+    ${hospitals.slice(0,3).map(h=>`
+    <div class="glass-red rounded-xl p-4">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#f87171">${h.name}</div>
+          <div style="font-size:11px;color:#9ca3af">${h.district}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:22px;font-weight:900;color:#f87171">${h.riskScore}</div>
+          <div style="font-size:10px;color:#9ca3af">Risk Score</div>
+        </div>
+      </div>
+      <div style="background:#1f2937;border-radius:4px;height:6px;margin-bottom:8px">
+        <div style="height:100%;border-radius:4px;width:${h.riskScore}%;background:#dc2626"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:10px;text-align:center">
+        <div style="background:rgba(220,38,38,0.2);border-radius:4px;padding:4px"><div style="color:#f87171;font-weight:700">${h.flagged}</div><div style="color:#9ca3af">Flagged</div></div>
+        <div style="background:rgba(234,179,8,0.2);border-radius:4px;padding:4px"><div style="color:#fbbf24;font-weight:700">${h.review}</div><div style="color:#9ca3af">Review</div></div>
+        <div style="background:rgba(34,197,94,0.2);border-radius:4px;padding:4px"><div style="color:#4ade80;font-weight:700">${h.clear}</div><div style="color:#9ca3af">Clear</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#fbbf24">₹${Math.round(h.riskAmount/100000)}L at risk • ${h.fraudRate}% fraud rate</div>
+    </div>`).join('')}
+  </div>
+  <div class="glass rounded-xl" style="overflow:hidden">
+    <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05)">
+      <h3 style="font-size:13px;font-weight:700;color:#e2e8f0">🏥 All Hospital Intelligence</h3>
+    </div>
+    <div style="overflow-x:auto;max-height:calc(100vh - 380px);overflow-y:auto">
+      <table>
+        <thead><tr>
+          <th>Hospital</th><th>District</th><th>Total Claims</th><th>Flagged</th>
+          <th>Fraud Rate</th><th>Money at Risk</th><th>Doctors</th><th>Risk Score</th>
+        </tr></thead>
+        <tbody>
+          ${hospitals.map(h=>`<tr>
+            <td style="font-size:12px;font-weight:600">${h.name}</td>
+            <td style="font-size:11px;color:#9ca3af">${h.district}</td>
+            <td style="font-size:12px">${h.total}</td>
+            <td style="font-size:12px;color:#f87171;font-weight:700">${h.flagged}</td>
+            <td>
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:50px;height:5px;background:#1f2937;border-radius:3px">
+                  <div style="height:100%;border-radius:3px;width:${h.fraudRate}%;background:${h.fraudRate>50?'#dc2626':h.fraudRate>25?'#eab308':'#22c55e'}"></div>
+                </div>
+                <span style="font-size:11px;color:${h.fraudRate>50?'#f87171':h.fraudRate>25?'#fbbf24':'#4ade80'}">${h.fraudRate}%</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:#fbbf24">₹${Math.round(h.riskAmount/100000)}L</td>
+            <td style="font-size:12px">${h.doctors}</td>
+            <td>
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:60px;height:6px;background:#1f2937;border-radius:3px">
+                  <div style="height:100%;border-radius:3px;width:${h.riskScore}%;background:${h.riskScore>=70?'#dc2626':h.riskScore>=40?'#eab308':'#22c55e'}"></div>
+                </div>
+                <span style="font-size:12px;font-weight:700;color:${h.riskScore>=70?'#f87171':h.riskScore>=40?'#fbbf24':'#4ade80'}">${h.riskScore}</span>
+              </div>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// AI CHAT
+// ============================================================
+function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const msg=inp.value.trim();
+  if(!msg)return;
+  inp.value='';
+  addChatMsg('You',msg,'#60a5fa');
+  setTimeout(()=>addChatMsg('GovShield AI',generateAIResponse(msg),'#f87171'),400);
+}
+
+function quickChat(msg){
+  document.getElementById('chatInput').value=msg;
+  sendChat();
+}
+
+function addChatMsg(sender,text,color){
+  const el=document.getElementById('chatMessages');
+  const div=document.createElement('div');
+  div.className='chat-msg glass rounded-lg p-3';
+  div.style.fontSize='12px';
+  div.innerHTML=`<span style="color:${color};font-weight:700">${sender}:</span> ${text}`;
+  el.appendChild(div);
+  el.scrollTop=el.scrollHeight;
+}
+
+function generateAIResponse(msg){
+  const m=msg.toLowerCase();
+  const fl=processedClaims.filter(c=>c.statusClass==='red');
+  const total=processedClaims.length;
+  if(m.includes('flagged')||m.includes('why')){
+    const c=selectedClaim||fl[0];
+    if(c)return `Claim ${c.claim_id} is flagged because: ${c.reasons.slice(0,3).map(r=>r.factor).join(', ')}. Risk score: ${c.fraud_risk_score}/100.`;
+    return 'Select a claim first by clicking on it in Investigator mode.';
+  }
+  if(m.includes('pattern')||m.includes('fraud')){
+    const dupCount=processedClaims.filter(c=>c.submission_count>1).length;
+    const hiInfl=processedClaims.filter(c=>c.features&&c.features.inflation_ratio>10).length;
+    return `Top fraud patterns: ${fl.length} flagged claims (${Math.round(fl.length/total*100)}% rate). ${dupCount} duplicate submissions. ${hiInfl} claims with 10x+ inflation. Most common: claim inflation and duplicate billing.`;
+  }
+  if(m.includes('hospital')){
+    const hd={};
+    processedClaims.forEach(c=>{if(!hd[c.hospital_name])hd[c.hospital_name]={f:0,t:0};hd[c.hospital_name].t++;if(c.statusClass==='red')hd[c.hospital_name].f++;});
+    const top=Object.entries(hd).sort((a,b)=>b[1].f-a[1].f).slice(0,3);
+    return `Top risky hospitals: ${top.map(([h,v])=>`${h.split(' ')[0]} (${v.f} flagged, ${Math.round(v.f/v.t*100)}% rate)`).join(', ')}.`;
+  }
+  if(m.includes('threshold')){
+    return `Current thresholds — Fraud: ${fraudThreshold}, Review: ${reviewThreshold}. Lowering fraud threshold increases flagged claims. Currently ${fl.length} flagged. Try adjusting the sliders on the left to see real-time impact.`;
+  }
+  if(m.includes('save')||m.includes('money')){
+    const saved=fl.reduce((s,c)=>s+c.claim_amount,0);
+    return `Potential savings: ₹${(saved/10000000).toFixed(2)} Crore by blocking ${fl.length} flagged claims. Average fraudulent claim: ₹${Math.round(saved/Math.max(fl.length,1)).toLocaleString()}.`;
+  }
+  if(m.includes('doctor')){
+    const dd={};
+    processedClaims.forEach(c=>{if(!dd[c.doctor_id])dd[c.doctor_id]=0;if(c.statusClass==='red')dd[c.doctor_id]++;});
+    const top=Object.entries(dd).sort((a,b)=>b[1]-a[1]).slice(0,3);
+    return `High-risk doctors: ${top.map(([d,n])=>`${d} (${n} flagged claims)`).join(', ')}.`;
+  }
+  return `I analyzed ${total} claims. Found ${fl.length} fraudulent (${Math.round(fl.length/total*100)}%), ${processedClaims.filter(c=>c.statusClass==='yellow').length} for review. Ask me about patterns, hospitals, thresholds, or specific claims.`;
+}
+
+// ============================================================
+// UPLOAD & EXPORT
+// ============================================================
+function openUploadModal(){document.getElementById('uploadModal').style.display='flex';}
+function closeUploadModal(){document.getElementById('uploadModal').style.display='none';}
+
+function handleUpload(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  document.getElementById('uploadStatus').textContent='Parsing '+file.name+'...';
+  Papa.parse(file,{header:true,dynamicTyping:true,complete:function(res){
+    if(res.data&&res.data.length>0){
+      claimsData=res.data.filter(r=>r.claim_id);
+      document.getElementById('uploadStatus').innerHTML='<span style="color:#4ade80">✅ Loaded '+claimsData.length+' claims from '+file.name+'</span>';
+      processAllClaims();
+      setTimeout(closeUploadModal,1500);
+    } else {
+      document.getElementById('uploadStatus').innerHTML='<span style="color:#f87171">❌ Invalid CSV format</span>';
+    }
+  }});
+}
+
+function exportCSV(){
+  if(!processedClaims.length)return;
+  const headers=['claim_id','patient_name','hospital_name','procedure_name','claim_amount','fraud_risk_score','status','statusClass'];
+  const rows=processedClaims.map(c=>headers.map(h=>`"${c[h]||''}"`).join(','));
+  const csv=[headers.join(','),...rows].join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='govshield_results.csv';
+  a.click();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('DOMContentLoaded',()=>{
+  claimsData=generateDataset();
+  renderRules();
+  processAllClaims();
+});
+</script>
+</body>
+</html>
