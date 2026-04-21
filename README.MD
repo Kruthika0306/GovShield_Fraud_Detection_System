@@ -18,3 +18,79 @@ GovShield is an interactive fraud detection platform built to protect the Ayushm
 1. Extract the folder.
 2. Open `index.html` in any modern web browser (Chrome/Edge preferred).
 3. Use the pre-loaded data or upload the provided `claims_data.csv` to see the system in action.
+
+## 🚀 Features
+
+* 🔍 **Fraud Detection Engine**
+  Identifies suspicious claims based on unusual patterns in the dataset
+
+* 📊 **Interactive Dashboard**
+  Displays claim insights in a simple and understandable format
+
+* 📁 **Dataset Upload**
+  Users can upload claim data (CSV) for analysis
+
+* ⚡ **Real-time Processing (Prototype Level)**
+  Provides quick results based on uploaded data
+
+* 🧠 **Rule-based + ML Approach**
+  Combines basic logic and ML concepts for detection
+
+* 🖥️ **User-friendly Interface**
+  Clean and simple UI built for easy interaction
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+* HTML
+* CSS (Tailwind CSS)
+* JavaScript
+
+**Backend (Concept/Prototype Level):**
+* Python (Flask – if used)
+
+**Data Handling & AI:**
+* Pandas
+* Basic Machine Learning concepts
+
+**Tools & Platforms:**
+* GitHub (Version Control)
+* VS Code
+
+## ⚙️ How It Works
+
+1. User uploads a claims dataset (`claims_data.csv`)
+2. The system processes the data
+3. Fraud detection logic is applied:
+    * Detects abnormal claim amounts
+    * Identifies duplicate or suspicious entries
+4. Results are displayed on the dashboard
+5. Insights help in identifying potential fraud cases
+
+## ✨ Key Highlights
+
+* 💡 Solves a **real-world problem** in healthcare fraud detection
+* ⚡ Built as a **lightweight, software-based solution** (no expensive sensors needed)
+* 🔍 Focus on **early-stage fraud identification**
+* 📈 Scalable idea that can be expanded with advanced AI models
+* 🏆 Designed for hackathon/prototype-level innovation
+
+## 🔮 Future Scope
+
+* 🤖 Integration of advanced ML models (Random Forest, Neural Networks)
+* ☁️ Deployment using cloud platforms (AWS / Google Cloud)
+* 🔐 Secure login system for officials
+* 📊 Advanced analytics dashboard with visualizations
+* 🔗 Integration with real government healthcare databases
+* 📱 Mobile-friendly version or app
+
+## 📂 Project Structure
+
+GovShield_Fraud_Detection_System/
+│── index.html
+│── README.md
+│── claims_data.csv
+│── Project_Report.pdf
+│── Output_Screenshots/
+   └── (all screenshots)
+
